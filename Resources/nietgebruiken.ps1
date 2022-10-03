@@ -1,6 +1,7 @@
 $ScriptDrive= Read-Host -Prompt "Wat is de schijf letter van deze usb?(bijv X:)"
 ECHO "De schijf letter is $ScriptDrive"
 Install-Module PSWindowsUpdate
+Add-WUServiceManager -MicrosoftUpdate
 Get-WindowsUpdate -AcceptAll -Install
 $UpdateFailed= Read-Host -Prompt "Was er een foutmelding tijdens het updaten?(ja/nee)"
 if ($UpdateFailed -eq 'ja') {
@@ -20,4 +21,5 @@ w32tm /resync /force
 Write-Host "De tijd en datum zijn nu goed gezet."
 wget https://trivision.nl/downloads/TeamViewer_Host_Setup.exe -OutFile "C:\TeamViewer.exe"
 & "C:\TeamViewer.exe"
+Write-Host "TeamViewer is nu geinstalleerd
 powershell -ExecutionPolicy Bypass -File $ScriptDrive\Resources\Extragebruikersjaofnee.ps1
