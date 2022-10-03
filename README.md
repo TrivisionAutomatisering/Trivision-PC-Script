@@ -4,6 +4,8 @@ PC installatie script voor trivision
 
 Dit script gaat ervan uit dat je ingelogd bent als TriAdmin, dat het uitgevoerd word als administrator en dat je internettoegang hebt.
 
+Om te gebruiken zet bestanden op root van usb en start semi automated install script
+
 Werkt op windows 8, 10 en 11.
 
 De huidige versie van het scipt kan het volgende:
