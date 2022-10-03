@@ -27,3 +27,4 @@ To Do:
 - Kijken naar mogelijkheid teamviewer updaten via powershell
 - Mogelijk bitlocker opzetten via powershell
 - User input verminderren
+- Kijken naar mogelijkheid voor silent install van teamviewer en ninite
