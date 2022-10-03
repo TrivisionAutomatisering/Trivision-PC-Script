@@ -24,9 +24,9 @@ De huidige versie van het scipt kan het volgende:
 
 
 To Do:
-- (HOGE PRIORITEIT) zorgen dat er maar 1 keer gevragen hoeft te worden naar de schijf letter
+- (HOGE PRIORITEIT) Zorgen dat er maar 1 keer gevragen hoeft te worden naar de schijf letter
+- (HOGE PRIORITEIT) Groot gedeelte van cmd script overzetten naar powershell
 - Kijken of office en tom semi-automatisch geinstalleerd kunnen worden vanuit powershell
-- Groot gedeelte van cmd script overzetten naar powershell
 - Kijken naar mogelijkheid teamviewer updaten via powershell
 - Mogelijk bitlocker opzetten via powershell
 - User input verminderen
