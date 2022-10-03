@@ -27,5 +27,6 @@ To Do:
 - Groot gedeelte van cmd script overzetten naar powershell
 - Kijken naar mogelijkheid teamviewer updaten via powershell
 - Mogelijk bitlocker opzetten via powershell
-- User input verminderren
+- User input verminderen
 - Kijken naar mogelijkheid voor silent install van teamviewer en ninite
+- Zoeken naar applicatie om specifieke hardware info te exporteren naar een text bestand via powershell
