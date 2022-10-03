@@ -6,7 +6,9 @@ Dit script gaat ervan uit dat je ingelogd bent als TriAdmin, dat het uitgevoerd 
 
 Om te gebruiken zet bestanden op root van usb en start semi automated install script
 
-Werkt op windows 8, 10 en 11.
+Werkt op windows 10 en 11.
+
+Werkt mogelijk ook op windows server 2019 en 2022 maar dit is niet getest.
 
 De huidige versie van het scipt kan het volgende:
 
