@@ -32,3 +32,4 @@ To Do:
 - User input verminderen
 - Kijken naar mogelijkheid voor silent install van teamviewer en ninite
 - Zoeken naar applicatie om specifieke hardware info te exporteren naar een text bestand via powershell
+- (LAGE PRIORITEIT) foto + tekst instructie maken
