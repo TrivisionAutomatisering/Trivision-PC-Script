@@ -18,6 +18,6 @@ w32tm /register
 w32tm /config /syncfromflags:manual /manualpeerlist:"0.pool.ntp.org 1.pool.ntp.org 2.pool.ntp.org 3.pool.ntp.org"
 w32tm /resync /force
 Write-Host "De tijd en datum zijn nu goed gezet."
-wget https://trivision.nl/downloads/TeamViewer_Host_Setup.exe -OutFile "C:\temp\Teamviewer.exe"
-& "C:\temp\TeamViewer.exe"
+wget https://trivision.nl/downloads/TeamViewer_Host_Setup.exe -OutFile "C:\TeamViewer.exe"
+& "C:\TeamViewer.exe"
 powershell -ExecutionPolicy Bypass -File $ScriptDrive\Resources\Extragebruikersjaofnee.ps1
