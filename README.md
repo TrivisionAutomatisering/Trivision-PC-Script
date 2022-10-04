@@ -26,6 +26,7 @@ De huidige versie van het scipt kan het volgende:
 To Do:
 - (HOGE PRIORITEIT) Zorgen dat er maar 1 keer gevragen hoeft te worden naar de schijf letter
 - (HOGE PRIORITEIT) Groot gedeelte van cmd script overzetten naar powershell
+- (HOGE PRIORITEIT) script laten downloaden van github zodat dit niet elke nieuwe release handmatig hoeft te gebeuren
 - Teruggaan naar begin actie ipv script sluiten of opnieuw starten bij foute input op ja/nee vraag
 - Testen op windows server 2019 en windows server 2022
 - Kijken of office en tom semi-automatisch geinstalleerd kunnen worden vanuit powershell
