@@ -7,4 +7,4 @@ exit
 Read-Host -Prompt $ScriptDrive="Wat is de schijf letter van deze usb?(bijv. D)"
 Write-Host $ScriptDrive
 Get-Partition -DriveLetter $ScriptDrive| Set-Partition -NewDriveLetter H
-powershell.exe -ExecutionPolicy UnRestricted -File %ScriptDrive%\Resources\nietgebruiken.ps1
+powershell.exe -ExecutionPolicy UnRestricted -File H:\Resources\nietgebruiken.ps1
