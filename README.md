@@ -31,7 +31,7 @@ To Do:
 - ja/nee vragen vervangen met prompts ipv handmatig in moeten voeren
 - Kijken of office en tom semi-automatisch geinstalleerd kunnen worden vanuit powershell
 - Kijken naar mogelijkheid teamviewer updaten via powershell
-- Mogelijk bitlocker opzetten via powershell
+- Mogelijk bitlocker opzetten via powershell en gegevens exporteren naar text bestand op usb
 - User input verminderen
 - Kijken naar mogelijkheid voor silent install van teamviewer en ninite
 - Zoeken naar applicatie om specifieke hardware info te exporteren naar een text bestand via powershell
