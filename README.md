@@ -26,7 +26,7 @@ De huidige versie van het scipt kan het volgende:
 To Do:
 - (HOGE PRIORITEIT) Zorgen dat er maar 1 keer gevragen hoeft te worden naar de schijf letter
 - (HOGE PRIORITEIT) Groot gedeelte van cmd script overzetten naar powershell
-- (HOGE PRIORITEIT) Foto + tekst instructie maken
+- (dit gebeurt pas na release 1.0)(HOGE PRIORITEIT) Foto + tekst instructie maken
 - (HOGE PRIORITEIT) script laten downloaden van github zodat dit niet elke nieuwe release handmatig hoeft te gebeuren
 - ja/nee vragen vervangen met prompts ipv handmatig in moeten voeren
 - Kijken of office en tom semi-automatisch geinstalleerd kunnen worden vanuit powershell
