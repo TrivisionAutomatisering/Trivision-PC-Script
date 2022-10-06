@@ -4,7 +4,7 @@ PC installatie script voor trivision
 
 Dit script gaat ervan uit dat je ingelogd bent als TriAdmin, dat het uitgevoerd word als administrator en dat je internettoegang hebt.
 
-Om te gebruiken zet bestanden op root van usb en start semi automated install script
+Om te gebruiken zet bestanden op root van usb en start semi automated install script 
 
 Werkt op windows 10 en 11.
 
@@ -26,6 +26,7 @@ De huidige versie van het scipt kan het volgende:
 To Do:
 - (HOGE PRIORITEIT) Zorgen dat er maar 1 keer gevragen hoeft te worden naar de schijf letter
 - (HOGE PRIORITEIT) Groot gedeelte van cmd script overzetten naar powershell
+- (HOGE PRIORITEIT) Foto + tekst instructie maken
 - (HOGE PRIORITEIT) script laten downloaden van github zodat dit niet elke nieuwe release handmatig hoeft te gebeuren
 - ja/nee vragen vervangen met prompts ipv handmatig in moeten voeren
 - Kijken of office en tom semi-automatisch geinstalleerd kunnen worden vanuit powershell
@@ -34,5 +35,4 @@ To Do:
 - User input verminderen
 - Kijken naar mogelijkheid voor silent install van teamviewer en ninite
 - Zoeken naar applicatie om specifieke hardware info te exporteren naar een text bestand via powershell
-- (LAGE PRIORITEIT) Foto + tekst instructie maken
 - (LAGE PRIORITEIT) Testen op windows server 2019 en windows server 2022
