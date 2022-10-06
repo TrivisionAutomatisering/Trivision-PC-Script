@@ -19,10 +19,12 @@ w32tm /resync /force
 Write-Host "De tijd en datum zijn nu goed gezet."
 wget https://trivision.nl/downloads/TeamViewer_Host_Setup.exe -OutFile "C:\TeamViewer.exe"
 & "C:\TeamViewer.exe"
-Write-Host "TeamViewer is nu geinstalleerd"
+Write-Host "TeamViewer is nu aan het installeren"
+timeout /t 15
 wget https://ninite.com/7zip-adoptjdkx8-chrome-foxit/ninite.exe -OutFile "C:\ninite.exe"
 & "C:\ninite.exe"
-Write-Host "ninite is nu geinstalleerd"
+Write-Host "ninite is nu aan het installeren"
+timeout /t 15
 Remove-Item "C:\ninite.exe"
 Remove-Item "TeamViewer.exe"
 powershell -ExecutionPolicy Bypass -File H:\Resources\Extragebruikersjaofnee.ps1
