@@ -27,8 +27,7 @@ To Do:
 - (HOGE PRIORITEIT) Zorgen dat er maar 1 keer gevragen hoeft te worden naar de schijf letter
 - (HOGE PRIORITEIT) Groot gedeelte van cmd script overzetten naar powershell
 - (HOGE PRIORITEIT) script laten downloaden van github zodat dit niet elke nieuwe release handmatig hoeft te gebeuren
-- Teruggaan naar begin actie ipv script sluiten of opnieuw starten bij foute input op ja/nee vraag
-- Testen op windows server 2019 en windows server 2022
+- ja/nee vragen vervangen met prompts ipv handmatig in moeten voeren
 - Kijken of office en tom semi-automatisch geinstalleerd kunnen worden vanuit powershell
 - Kijken naar mogelijkheid teamviewer updaten via powershell
 - Mogelijk bitlocker opzetten via powershell
@@ -36,3 +35,4 @@ To Do:
 - Kijken naar mogelijkheid voor silent install van teamviewer en ninite
 - Zoeken naar applicatie om specifieke hardware info te exporteren naar een text bestand via powershell
 - (LAGE PRIORITEIT) Foto + tekst instructie maken
+- (LAGE PRIORITEIT) Testen op windows server 2019 en windows server 2022
