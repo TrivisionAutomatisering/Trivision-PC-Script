@@ -18,7 +18,8 @@ De huidige versie van het scipt kan het volgende:
 - pc naam aanpassen
 - UAC uitzetten
 - evt een extra gebruiker aanmaken en die aan de Administrators groep toevoegen
-- Windows update notificaties aanzetten
+- Updates van andere microsoft producten binnenhalen met windows updates
+- Bitlocker instellen en ID + sleutel naar tekst bestand zetten op usb
 - Windows.Old map verwijderen als die bestaat
 - Alle updates installeren
 - Java, chrome, foxit en 7-zip installeren
