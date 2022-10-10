@@ -4,7 +4,9 @@ PC installatie script voor trivision
 
 Dit script gaat ervan uit dat je ingelogd bent als TriAdmin, dat het uitgevoerd word als administrator en dat je internettoegang hebt.
 
-Om te gebruiken zet bestanden op root van usb en start semi automated install script 
+
+Om te gebruiken zet bestanden op root van usb en start het script als admin
+
 
 Werkt op windows 10 en 11.
 
