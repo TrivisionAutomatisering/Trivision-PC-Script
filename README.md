@@ -27,14 +27,11 @@ De huidige versie van het scipt kan het volgende:
 
 
 To Do:
-- (HOGE PRIORITEIT) Zorgen dat er maar 1 keer gevragen hoeft te worden naar de schijf letter
-- (HOGE PRIORITEIT) Groot gedeelte van cmd script overzetten naar powershell
 - (dit gebeurt pas na release 1.0)(HOGE PRIORITEIT) Foto + tekst instructie maken
 - (HOGE PRIORITEIT) script laten downloaden van github zodat dit niet elke nieuwe release handmatig hoeft te gebeuren
 - ja/nee vragen vervangen met prompts ipv handmatig in moeten voeren
-- Kijken of office en tom semi-automatisch geinstalleerd kunnen worden vanuit powershell
+- office silent install via powershell
 - Kijken naar mogelijkheid teamviewer updaten via powershell
-- Mogelijk bitlocker opzetten via powershell en gegevens exporteren naar text bestand op usb
 - User input verminderen
 - Kijken naar mogelijkheid voor silent install van teamviewer en ninite
 - Zoeken naar applicatie om specifieke hardware info te exporteren naar een text bestand via powershell
