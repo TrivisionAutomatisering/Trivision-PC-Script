@@ -1,9 +1,9 @@
 #Installeert module voor windows updates in powershell
-Install-Module PSWindowsUpdate
+Install-Module PSWindowsUpdate -Confirm:$False
 #Schakelt updates voor andere microsoft producten in
 $ServiceManager = New-Object -ComObject "Microsoft.Update.ServiceManager"
 $ServiceManager.ClientApplicationID = "My App"
-$NewService = $ServiceManager.AddService2("7971f918-a847-4430-9279-4a52d1efe18d",7,"")
+$NewService = $ServiceManager.AddService2("7971f918-a847-4430-9279-4a52d1efe18d",7,"") -Confirm:$False
 #Download en installeert alle windows updates
 Get-WindowsUpdate -AcceptAll -Install
 #Start het script opnieuw als er een foutmelding was tijdens het updaten of als er een fout antwoord gegeven is
