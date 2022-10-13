@@ -4,7 +4,7 @@ Rename-Computer -NewName "$NewName"
 #Schakelt BitLocker in en output bestand met id en herstelsleutel naar txt bestand op usb stick
 Enable-BitLocker -MountPoint "C:" -RecoveryPasswordProtector
 Start-Sleep 2
-(Get-BitLockerVolume -MountPoint C).KeyProtector > H:/BitlockerKey$NewName.txt
+(Get-BitLockerVolume -MountPoint C).KeyProtector | Where-Object RecoveryPassword | Select-Object KeyProtectorId, RecoveryPassword > H:/BitlockerKey$NewName.txt
 #Verandert tijdzone
 tzutil /s "W. Europe Standard Time"
 #Verwijdert Windows.old
