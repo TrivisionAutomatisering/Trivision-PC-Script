@@ -1,20 +1,14 @@
 $UserName = Read-Host -Prompt "Wat is de gebruikersnaam?"
-$UserPswd = Read-Host -Prompt "Wat is het wachtwoord?"
+$UserPswd = Read-Host -Prompt "Wat is het wachtwoord?" -AsSecureString
 $UserFullName = Read-Host -Prompt "Wat is de volledige naam?"
-$secureString = ConvertTo-SecureString $UserPswd -asplaintext -Force
-New-LocalUser -Name "$UserName" -Password $secureString -FullName "$UserFullName"
+New-LocalUser -Name "$UserName" -Password "$UserPswd" -FullName "$UserFullName"
 Add-LocalGroupMember -Group "Administrators" -Member "$UserName"
-$ExtraUsers= Read-Host -Prompt "Wil je nog extra gebruikers toevoegen?(ja/nee)"
-if ($ExtraUsers -eq 'ja') {
-    powershell -ExecutionPolicy Bypass -File H:\Resources\ExtraGebruikers.ps1
-    }
-elseif ($ExtraUsers -eq 'nee') {
-     echo "Het systeem gaat nu opnieuw opstarten."
-     Start-Sleep -Seconds 3
-     Restart-Computer
-}
-else {
-      echo "Dat is een fout antwoord, het script sluit nu."
-      Start-Sleep -Seconds 3
-      Exit-PSHostProcess
+$Kop = 'Extra Gebruiker'
+$Vraag = 'Wil je nog een gebruiker toevoegen?'
+$Keuzes = '&Ja', '&Nee'
+$Antwoord = $Host.UI.PromptForChoice($Kop, $Vraag, $Keuzes, 1)
+if ($Antwoord -eq 0) {
+    powershell.exe -ExecutionPolicy UnRestricted -File "%ScriptDrive%:\Resources\ExtraGebruikers.ps1"
+} else {
+    Restart-Computer
 }
