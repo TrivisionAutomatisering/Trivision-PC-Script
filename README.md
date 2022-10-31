@@ -28,12 +28,4 @@ De huidige versie van het scipt kan het volgende:
 
 To Do:
 - (dit gebeurt pas na release 1.0)(HOGE PRIORITEIT) Foto + tekst instructie maken
-- (HOGE PRIORITEIT) script laten downloaden van github zodat dit niet elke nieuwe release handmatig hoeft te gebeuren
-- ja/nee vragen vervangen met prompts ipv handmatig in moeten voeren
 - TeamViewer herinstallatie prompt toevoegen
-- office silent install via powershell
-- Kijken naar mogelijkheid teamviewer updaten via powershell
-- User input verminderen
-- Kijken naar mogelijkheid voor silent install van teamviewer en ninite
-- Zoeken naar applicatie om specifieke hardware info te exporteren naar een text bestand via powershell
-- (LAGE PRIORITEIT) Testen op windows server 2019 en windows server 2022
