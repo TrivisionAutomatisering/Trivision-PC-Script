@@ -29,6 +29,14 @@ w32tm /register
 w32tm /config /syncfromflags:manual /manualpeerlist:"0.pool.ntp.org 1.pool.ntp.org 2.pool.ntp.org 3.pool.ntp.org"
 w32tm /resync /force
 Write-Host "De tijd en datum zijn nu goed gezet."
+#Gaat naar het script om office 365 te installeren
+$Kop2 = 'Extra Gebruiker'
+$Vraag2 = 'Wil je een extra gebruiker toevoegen?'
+$Keuzes2 = '&Ja', '&Nee'
+$Antwoord2 = $Host.UI.PromptForChoice($Kop2, $Vraag2, $Keuzes2, 1)
+if ($Antwoord2 -eq 0) {
+    powershell.exe -ExecutionPolicy UnRestricted -File H:\Resources\Office365.ps1
+}
 
 #Gaat naar het script om admin gebruikers toe te voegen of reboot de computer
 $Kop = 'Extra Gebruiker'
