@@ -1,19 +1,3 @@
-#Download TeamViewer
-wget https://trivision.nl/downloads/TeamViewer_Host_Setup.exe -OutFile "C:\TeamViewer.exe"
-#Voert TeamViewer uit
-& "C:\TeamViewer.exe"
-#Download ninite
-wget https://ninite.com/7zip-adoptjdkx8-chrome-foxit/ninite.exe -OutFile "C:\ninite.exe"
-#Voert ninite uit
-& "C:\ninite.exe"
-Read-Host 'Druk op Enter als TeamViewer en ninite geinstalleerd zijn.'
-#Verwijderd ninite en TeamViewer bestanden
-Remove-Item "C:\ninite.exe"
-Remove-Item "C:\TeamViewer.exe"
-#Herinstalleert teamviewer als de installatie gefaald is
-#
-#
-#
 # Installeert provider om windows update module te kunnen installeren
 Install-PackageProvider -Name NuGet -MinimumVersion 2.8.5.201 -Force
 #Zet repository voor de windows update module als vertrouwd
@@ -29,7 +13,8 @@ Get-WindowsUpdate -AcceptAll -Install
 #Start het script opnieuw als er een foutmelding was tijdens het updaten of als er een fout antwoord gegeven is
 $UpdateFailed= Read-Host -Prompt "Was er een foutmelding tijdens het updaten?(ja/nee)"
 if ($UpdateFailed -eq 'ja') {
-    powershell -ExecutionPolicy Bypass -File H:\Resources\nietgebruiken.ps1}
+    powershell -ExecutionPolicy Bypass -File H:\Resources\nietgebruiken.ps1
+}
 elseif ($UpdateFailed -eq 'nee') {
      echo "Ok."
 }
@@ -51,7 +36,7 @@ $Vraag = 'Wil je een extra gebruiker toevoegen?'
 $Keuzes = '&Ja', '&Nee'
 $Antwoord = $Host.UI.PromptForChoice($Kop, $Vraag, $Keuzes, 1)
 if ($Antwoord -eq 0) {
-    powershell.exe -ExecutionPolicy UnRestricted -File "%ScriptDrive%:\Resources\ExtraGebruikers"
+    powershell.exe -ExecutionPolicy UnRestricted -File H:\Resources\ExtraGebruikers.ps1
 } else {
     Restart-Computer
 }

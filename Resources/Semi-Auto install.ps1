@@ -14,5 +14,21 @@ Get-Partition -DriveLetter $ScriptDrive | Set-Partition -NewDriveLetter H
 timeout /t 5
 #De-blokkeert ps1 bestanden voor windows 10
 gci H:\Resources | Unblock-File
+#Download TeamViewer
+wget https://trivision.nl/downloads/TeamViewer_Host_Setup.exe -OutFile "C:\TeamViewer.exe"
+#Voert TeamViewer uit
+& "C:\TeamViewer.exe"
+#Download ninite
+wget https://ninite.com/7zip-adoptjdkx8-chrome-foxit/ninite.exe -OutFile "C:\ninite.exe"
+#Voert ninite uit
+& "C:\ninite.exe"
+Read-Host 'Druk op Enter als TeamViewer en ninite geinstalleerd zijn.'
+#Verwijderd ninite en TeamViewer bestanden
+Remove-Item "C:\ninite.exe"
+Remove-Item "C:\TeamViewer.exe"
+#Herinstalleert teamviewer als de installatie gefaald is
+#
+#
+#
 #Start volgende deel van script
 powershell.exe -ExecutionPolicy UnRestricted -File H:\Resources\geenuserinput.ps1
