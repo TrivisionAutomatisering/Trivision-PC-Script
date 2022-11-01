@@ -9,9 +9,6 @@ if($InternetVerbinding -eq "False"){
 }
 #
 Write-Host "Na dit script word de pc opnieuw opgestart."
-#Verandert usb schijf letter naar H:
-Get-Partition -DriveLetter $ScriptDrive | Set-Partition -NewDriveLetter H
-timeout /t 5
 #De-blokkeert ps1 bestanden voor windows 10
 gci H:\Resources | Unblock-File
 #Download TeamViewer
