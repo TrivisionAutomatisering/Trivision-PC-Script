@@ -30,3 +30,4 @@ To Do:
 - (dit gebeurt pas na release 1.0)(HOGE PRIORITEIT) Foto + tekst instructie maken
 - TeamViewer herinstallatie prompt toevoegen
 - mogelijk dymon integreren dmv https://github.com/minlux/dymon
+- HP Bloatware verwijderen dmv https://gist.github.com/mark05e/a79221b4245962a477a49eb281d97388
