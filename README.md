@@ -19,11 +19,13 @@ De huidige versie van het scipt kan het volgende:
 - UAC uitzetten
 - evt een extra gebruiker aanmaken en die aan de Administrators groep toevoegen
 - Updates van andere microsoft producten binnenhalen met windows updates
-- Bitlocker instellen en ID + sleutel naar tekst bestand zetten op usb
+- Bitlocker instellen en ID + sleutel naar csv bestand zetten op usb
 - Windows.Old map verwijderen als die bestaat
 - Alle updates installeren
 - Java, chrome, foxit en 7-zip installeren
 - Trivision versie van teamviewer installeren
+- Office 365 installeren
+- Computer specificaties naar csv bestand zetten op usb
 
 
 To Do:
