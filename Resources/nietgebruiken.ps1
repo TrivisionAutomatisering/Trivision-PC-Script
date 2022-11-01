@@ -30,8 +30,8 @@ w32tm /config /syncfromflags:manual /manualpeerlist:"0.pool.ntp.org 1.pool.ntp.o
 w32tm /resync /force
 Write-Host "De tijd en datum zijn nu goed gezet."
 #Gaat naar het script om office 365 te installeren
-$Kop2 = 'Extra Gebruiker'
-$Vraag2 = 'Wil je een extra gebruiker toevoegen?'
+$Kop2 = 'Office 365'
+$Vraag2 = 'Wil je Office 365 installeren?'
 $Keuzes2 = '&Ja', '&Nee'
 $Antwoord2 = $Host.UI.PromptForChoice($Kop2, $Vraag2, $Keuzes2, 1)
 if ($Antwoord2 -eq 0) {
