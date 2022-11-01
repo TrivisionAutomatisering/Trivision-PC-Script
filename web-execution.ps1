@@ -6,5 +6,5 @@ mkdir C:\Temp -ErrorAction Ignore
 wget https://github.com/MitchellTrivision/Trivision-PC-Script/releases/latest/download/PcScript.zip -OutFile C:\Temp\PcScript.zip
 Expand-Archive C:\Temp\PcScript.zip -DestinationPath H:\ -Force
 Remove-Item "C:\Temp" -Recurse
-Unblock-File H:/*.ps1
+Unblock-File "H:/*.ps1"
 powershell.exe -ExecutionPolicy UnRestricted -File "H:\Resources\Semi-Auto install.ps1"
