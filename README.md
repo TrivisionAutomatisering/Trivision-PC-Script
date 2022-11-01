@@ -29,3 +29,4 @@ De huidige versie van het scipt kan het volgende:
 To Do:
 - (dit gebeurt pas na release 1.0)(HOGE PRIORITEIT) Foto + tekst instructie maken
 - TeamViewer herinstallatie prompt toevoegen
+- mogelijk dymon integreren dmv https://github.com/minlux/dymon
