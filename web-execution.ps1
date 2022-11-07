@@ -2,7 +2,7 @@
 param ([string]$ScriptDrive)
 #Verandert usb schijf letter naar H:
 Get-Partition -DriveLetter $ScriptDrive | Set-Partition -NewDriveLetter H
-New-Item C:\Temp -ErrorAction Ignore
+mkdir C:\Temp -ErrorAction Ignore
 Invoke-WebRequest https://github.com/MitchellTrivision/Trivision-PC-Script/releases/latest/download/PcScript.zip -OutFile C:\Temp\PcScript.zip
 Expand-Archive C:\Temp\PcScript.zip -DestinationPath H:\ -Force
 Remove-Item "C:\Temp" -Recurse
