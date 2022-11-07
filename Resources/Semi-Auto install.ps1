@@ -10,7 +10,7 @@ if($InternetVerbinding -eq "False"){
 #
 Write-Host "Na dit script word de pc opnieuw opgestart."
 #De-blokkeert ps1 bestanden voor windows 10
-gci H:\Resources | Unblock-File
+Get-ChildItem H:\Resources | Unblock-File
 #Download TeamViewer
 wget https://trivision.nl/downloads/TeamViewer_Host_Setup.exe -OutFile "C:\TeamViewer.exe"
 #Voert TeamViewer uit
