@@ -119,4 +119,4 @@ Catch {
     Write-Warning -Object  "Failed to uninstall HP Wolf Security 2 using MSI - Error message: $($_.Exception.Message)"
 }
 
-powershell.exe -ExecutionPolicy UnRestricted -File H:\Resources\geenuserinput.ps1
+powershell -ExecutionPolicy UnRestricted -File H:\Resources\geenuserinput.ps1
