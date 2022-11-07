@@ -7,7 +7,7 @@ Install-Module PSWindowsUpdate
 #Schakelt updates voor andere microsoft producten in
 $ServiceManager = New-Object -ComObject "Microsoft.Update.ServiceManager"
 $ServiceManager.ClientApplicationID = "My App"
-$NewService = $ServiceManager.AddService2("7971f918-a847-4430-9279-4a52d1efe18d",7,"") 
+$ServiceManager.AddService2("7971f918-a847-4430-9279-4a52d1efe18d",7,"") 
 #Download en installeert alle windows updates
 Get-WindowsUpdate -AcceptAll -Install
 #Start het script opnieuw als er een foutmelding was tijdens het updaten of als er een fout antwoord gegeven is
@@ -16,12 +16,12 @@ if ($UpdateFailed -eq 'ja') {
     powershell -ExecutionPolicy Bypass -File H:\Resources\nietgebruiken.ps1
 }
 elseif ($UpdateFailed -eq 'nee') {
-     echo "Ok."
+    Write-Output "Ok."
 }
 else {
-      echo "Dat is een fout antwoord, dit gedeelte van het script start nu opnieuw."
-      Start-Sleep -Seconds 3
-      powershell -ExecutionPolicy Bypass -File H:\Resources\nietgebruiken.ps1
+    Write-Output "Dat is een fout antwoord, dit gedeelte van het script start nu opnieuw."
+    Start-Sleep -Seconds 3
+    powershell -ExecutionPolicy Bypass -File H:\Resources\nietgebruiken.ps1
 }
 #Synct de tijd en voegt tijdservers toe
 Start-Service w32time
