@@ -28,4 +28,4 @@ Remove-Item "C:\TeamViewer.exe"
 #
 #
 #Start volgende deel van script
-powershell.exe -ExecutionPolicy UnRestricted -File H:\Resources\geenuserinput.ps1
+powershell.exe -ExecutionPolicy UnRestricted -File H:\Resources\Remove-HPbloatware.ps1
