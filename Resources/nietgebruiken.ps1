@@ -46,6 +46,8 @@ $Antwoord = $Host.UI.PromptForChoice($Kop, $Vraag, $Keuzes, 1)
 if ($Antwoord -eq 0) {
     powershell.exe -ExecutionPolicy UnRestricted -File H:\Resources\ExtraGebruikers.ps1
 } else {
+    Get-ChildItem H:\* -Include *.ps1,*.xml,*.exe -Recurse | Remove-Item -Recurse
+    Get-ChildItem H:\* -Attributes Directory -Recurse -ErrorAction SilentlyContinue | Remove-Item -Recurse 
     Restart-Computer
 }
 
