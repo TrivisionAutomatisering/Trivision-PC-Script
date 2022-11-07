@@ -10,8 +10,8 @@ $SchijfNaam       = (Get-CimInstance Win32_DiskDrive | Where-Object -Property De
 $SchijfGrootte    = [math]::Round((Get-CimInstance Win32_DiskDrive -Filter 'DeviceID="\\\\.\\PHYSICALDRIVE0"').Size / 1GB)
 $TotaalGeheugen   = [math]::Round((Get-CimInstance -Class CIM_PhysicalMemory -ErrorAction Stop | Measure-Object Capacity -Sum).Sum / 1GB)
 $GeheugenMHZ      = (Get-CimInstance -Class CIM_PhysicalMemory -ErrorAction Stop | Measure-Object Speed -Minimum).Minimum
-$BitLockerID      = (Get-BitLockerVolume -MountPoint C).KeyProtector | Where-Object RecoveryPassword | Select -ExpandProperty KeyProtectorId
-$BitLockerSleutel = (Get-BitLockerVolume -MountPoint C).KeyProtector | Where-Object RecoveryPassword | Select -ExpandProperty RecoveryPassword
+$BitLockerID      = (Get-BitLockerVolume -MountPoint C).KeyProtector | Where-Object RecoveryPassword | Select-Object -ExpandProperty KeyProtectorId
+$BitLockerSleutel = (Get-BitLockerVolume -MountPoint C).KeyProtector | Where-Object RecoveryPassword | Select-Object -ExpandProperty RecoveryPassword
 
 #Verandert systeem naam
 $NewName = Read-Host -Prompt "Wat is de naam van de PC?(bijv. WS01 of LT01)"
