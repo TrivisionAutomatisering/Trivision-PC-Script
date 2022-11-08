@@ -23,16 +23,19 @@
 # List of built-in apps to remove
 $UninstallPackages = @(
     "AD2F1837.HPJumpStarts"
+    "AD2F1837.HPPCHardwareDiagnosticsWindows"
     "AD2F1837.HPPowerManager"
     "AD2F1837.HPPrivacySettings"
     "AD2F1837.HPSupportAssistant"
     "AD2F1837.HPSureShieldAI"
+    "AD2F1837.HPSystemInformation"
     "AD2F1837.HPQuickDrop"
     "AD2F1837.HPWorkWell"
     "AD2F1837.myHP"
     "AD2F1837.HPDesktopSupportUtilities"
     "AD2F1837.HPQuickTouch"
     "AD2F1837.HPEasyClean"
+    "AD2F1837.HPSystemInformation"
 )
 
 # List of programs to uninstall
