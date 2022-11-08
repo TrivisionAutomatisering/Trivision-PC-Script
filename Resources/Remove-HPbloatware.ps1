@@ -68,11 +68,11 @@ $InstalledPrograms = Get-Package | Where-Object {$UninstallPrograms -contains $_
 # Remove appx provisioned packages - AppxProvisionedPackage
 ForEach ($ProvPackage in $ProvisionedPackages) {
 
-    Write-Host -Object "Attempting to remove provisioned package: [$($ProvPackage.DisplayName)]..."
+    Write-Host -Object "$Null"
 
     Try {
         $Null = Remove-AppxProvisionedPackage -PackageName $ProvPackage.PackageName -Online -ErrorAction Stop
-        Write-Host -Object "Successfully removed provisioned package: [$($ProvPackage.DisplayName)]"
+        Write-Host -Object "$Null"
     }
     Catch {Write-Warning -Message "Failed to remove provisioned package: [$($ProvPackage.DisplayName)]"}
 }
@@ -80,11 +80,11 @@ ForEach ($ProvPackage in $ProvisionedPackages) {
 # Remove appx packages - AppxPackage
 ForEach ($AppxPackage in $InstalledPackages) {
                                             
-    Write-Host -Object "Attempting to remove Appx package: [$($AppxPackage.Name)]..."
+    Write-Host -Object "$Null"
 
     Try {
         $Null = Remove-AppxPackage -Package $AppxPackage.PackageFullName -AllUsers -ErrorAction Stop
-        Write-Host -Object "Successfully removed Appx package: [$($AppxPackage.Name)]"
+        Write-Host -Object "$Null"
     }
     Catch {Write-Warning -Message "Failed to remove Appx package: [$($AppxPackage.Name)]"}
 }
@@ -92,11 +92,11 @@ ForEach ($AppxPackage in $InstalledPackages) {
 # Remove installed programs
 $InstalledPrograms | ForEach-Object {
 
-    Write-Host -Object "Attempting to uninstall: [$($_.Name)]..."
+    Write-Host -Object "$Null"
 
     Try {
         $Null = $_ | Uninstall-Package -AllVersions -Force -ErrorAction Stop
-        Write-Host -Object "Successfully uninstalled: [$($_.Name)]"
+        Write-Host -Object "$Null"
     }
     Catch {Write-Warning -Message "Failed to uninstall: [$($_.Name)]"}
 }
@@ -104,7 +104,7 @@ $InstalledPrograms | ForEach-Object {
 # Fallback attempt 1 to remove HP Wolf Security using msiexec
 Try {
     MsiExec /x "{0E2E04B0-9EDD-11EB-B38C-10604B96B11E}" /qn /norestart
-    Write-Host -Object "Fallback to MSI uninistall for HP Wolf Security initiated"
+    Write-Host -Object "$Null"
 }
 Catch {
     Write-Warning -Object "Failed to uninstall HP Wolf Security using MSI - Error message: $($_.Exception.Message)"
@@ -113,7 +113,7 @@ Catch {
 # Fallback attempt 2 to remove HP Wolf Security using msiexec
 Try {
     MsiExec /x "{4DA839F0-72CF-11EC-B247-3863BB3CB5A8}" /qn /norestart
-    Write-Host -Object "Fallback to MSI uninistall for HP Wolf 2 Security initiated"
+    Write-Host -Object "$Null"
 }
 Catch {
     Write-Warning -Object  "Failed to uninstall HP Wolf Security 2 using MSI - Error message: $($_.Exception.Message)"
