@@ -12,7 +12,7 @@
 
   <Add OfficeClientEdition="32" Channel="Current">
     <Product ID="O365ProPlusRetail">
-      <Language ID="nl-NL" />
+      <Language ID="MatchOS" />
     </Product>
   </Add>
 
