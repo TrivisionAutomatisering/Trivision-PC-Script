@@ -1,5 +1,5 @@
 H:/Resources/Office365/setup.exe /configure "H:\Resources\office365\Office nl-NL x64.xml"
-#gaat naar script om extra gebruikers toe te voegen
+#gaat naar script om extra gebruikers toe te voegen als het antwoord ja is
 $Kop = 'Extra Gebruiker'
 $Vraag = 'Wil je een extra gebruiker toevoegen?'
 $Keuzes = '&Ja', '&Nee'
