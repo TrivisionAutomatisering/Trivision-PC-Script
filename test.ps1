@@ -43,6 +43,10 @@ $AntwoordOffice = $Host.UI.PromptForChoice($KopOffice, $VraagOffice, $KeuzesOffi
 
 ##Extra Gebruiker Script
 # ScriptBlock dat vraagt naar gegevens voor de gebruiker, de gebruiker aanmaakt, toevoegt aan admin en dan vraagt of er nog een gebruiker toegevoegd moet worden.
+$KopGebruiker = 'Extra Gebruiker'
+$VraagGebruiker = 'Wil je een extra gebruiker toevoegen?'
+$KeuzesGebruiker = '&Ja', '&Nee'
+$AntwoordGebruiker = $Host.UI.PromptForChoice($KopGebruiker, $VraagGebruiker, $KeuzesGebruiker, 1)
 $ExtraGebruiker = {
     $UserName = Read-Host -Prompt "Wat is de gebruikersnaam?"
     $UserPswd = Read-Host -Prompt "Wat is het wachtwoord?"
@@ -58,10 +62,6 @@ $ExtraGebruiker = {
         & $ExtraGebruiker
     }
     #Vraagt om extra gebruiker 
-    $KopGebruiker = 'Extra Gebruiker'
-    $VraagGebruiker = 'Wil je nog een gebruiker toevoegen?'
-    $KeuzesGebruiker = '&Ja', '&Nee'
-    $AntwoordGebruiker = $Host.UI.PromptForChoice($KopGebruiker, $VraagGebruiker, $KeuzesGebruiker, 1)
 }
 ##
 
