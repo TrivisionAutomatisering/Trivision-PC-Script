@@ -26,9 +26,9 @@ Remove-Item "C:\TeamViewer.exe"
 #Herinstalleert teamviewer als de installatie gefaald is
 $Kop = 'TeamViewer'
 $Vraag = 'Is TeamViewer Correct Geinstalleerd?'
-$Keuzes = '&Ja', '&Nee'
+$Keuzes = '&Nee', '&Ja'
 $Antwoord = $Host.UI.PromptForChoice($Kop, $Vraag, $Keuzes, 1)
-if ($Antwoord -eq 1) {
+if ($Antwoord -eq 0) {
    Taskkill /F /IM TeamViewer.exe
    start "C:\Program Files (x86)\TeamViewer\uninstall.exe" /S 
    wget https://trivision.nl/downloads/TeamViewer_Host_Setup.exe -OutFile "C:\TeamViewer.exe"
