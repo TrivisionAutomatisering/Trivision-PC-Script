@@ -226,7 +226,6 @@ else {
     $GeheugenMHZ = $null
 }
 #
-
 #Output bitlocker id, bitlocker key, PC model, CPU, serienummer, RAM info en drive info naar een csv bestand
 $Specs = [PSCustomObject]@{
     Model                       = "$Model"
