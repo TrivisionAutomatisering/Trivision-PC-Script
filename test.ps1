@@ -288,10 +288,15 @@ if ($AntwoordOfficeTaal -eq 0) {
 elseif ($AntwoordOfficeTaal -eq 1) {
     & $Office365EN
 }
+#
+
 #Voert ScriptBlock $ExtraGebruiker uit als er ja geantwoord is op de vraag onder het ScriptBlock
 if ($AntwoordGebruiker -eq 0) {
     & $ExtraGebruiker
 }
+#
+
+#Verwijdert alle ps1, xml en exe bestanden en folders en herstart de computer 
 Get-ChildItem H:\* -Include *.ps1, *.xml, *.exe -Recurse | Remove-Item -Recurse
 Get-ChildItem H:\* -Attributes Directory -Recurse -ErrorAction SilentlyContinue | Remove-Item -Recurse 
 Restart-Computer
