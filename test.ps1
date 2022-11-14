@@ -7,7 +7,7 @@ Get-Partition -DriveLetter $ScriptDrive | Set-Partition -NewDriveLetter H
 #Windows Update ScriptBlock
 $WindowsUpdate = {
 # Installeert provider om windows update module te kunnen installeren
-Install-PackageProvider -Name NuGet -MinimumVersion 2.8.5.201 -Force
+Install-PackageProvider -Name NuGet -MinimumVersion 2.8.5.201 -Force | Out-Null
 #Zet repository voor de windows update module als vertrouwd
 Set-PSRepository PSGallery -InstallationPolicy Trusted
 #Installeert module voor windows updates in powershell
