@@ -50,7 +50,7 @@ tzutil /s "W. Europe Standard Time"
 #
 
 #Verwijdert Windows.old als het bestaat
-if (Test-Path -Path 'C:\Windows.old' -PathType Container -eq $true){
+if ((Test-Path -Path 'C:\Windows.old' -PathType Container) -eq $true){
 TAKEOWN /f C:\Windows.old\*.*
 ICACLS C:\Windows.old\*.* /Grant 'System:(F)'
 Remove-Item C:\Windows.old\*.*
