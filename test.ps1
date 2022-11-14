@@ -26,12 +26,8 @@ if($AntwoordWindowsUpdate -eq 0){
 ##
 
 ##Office Script
-#Office ScriptBlock EN
-$Office365EN = {
-    H:\Resources\Office365\setup.exe /configure "H:\Resources\office365\Office en-US x64.xml"
-}
-#Office ScriptBlock NL
-$Office365NL = {
+#Office ScriptBlock installeert office met dezelfde taal als de OS
+$Office365 = {
     H:/Resources/Office365/setup.exe /configure "H:\Resources\office365\Office nl-NL x64.xml"
 }
 #Vraagt of office geinstalleerd moet worden
@@ -39,12 +35,6 @@ $KopOffice = 'Office 365'
 $VraagOffice = 'Wil je Office 365 installeren?'
 $KeuzesOffice = '&Ja', '&Nee'
 $AntwoordOffice = $Host.UI.PromptForChoice($KopOffice, $VraagOffice, $KeuzesOffice, 1)
-if ($AntwoordOffice -eq 0) {
-    $KopOfficeTaal = 'Office taal'
-    $VraagOfficeTaal = 'In welke taal moet office geinstalleerd worden?'
-    $KeuzesOfficeTaal = '&nl-NL', '&en-US'
-    $AntwoordOfficeTaal = $Host.UI.PromptForChoice($KopOfficeTaal, $VraagOfficeTaal, $KeuzesOfficeTaal, 1)
-}
 ##
 
 ##Extra Gebruiker Script
@@ -282,11 +272,8 @@ $ServiceManager.AddService2("7971f918-a847-4430-9279-4a52d1efe18d", 7, "")
 #
 
 #Voert ScriptBlock $Office365 uit als er ja geantwoord is op de vraag onder het ScriptBlock
-if ($AntwoordOfficeTaal -eq 0) {
-    & $Office365NL
-}
-elseif ($AntwoordOfficeTaal -eq 1) {
-    & $Office365EN
+if ($AntwoordOffice -eq 0) {
+    & $Office365
 }
 #
 
