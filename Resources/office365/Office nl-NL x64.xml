@@ -12,13 +12,15 @@
 
   <Add OfficeClientEdition="64" Channel="Current">
     <Product ID="O365ProPlusRetail">
-      <Language ID="nl-NL" />
+      <Language ID="MatchOS" />
     </Product>
   </Add>
+  
+  <--  <Property Name="FORCEAPPSHUTDOWN" Value="False"/>
 
-  <!--  <Updates Enabled="TRUE" Channel="Current" /> -->
+  <--  <Updates Enabled="TRUE" Channel="Current" /> -->
 
-  <!--  <Display Level="None" AcceptEULA="TRUE" />  -->
+  <--  <Display Level="None" AcceptEULA="TRUE" />  -->
 
   <!--  <Property Name="AUTOACTIVATE" Value="1" />  -->
 
