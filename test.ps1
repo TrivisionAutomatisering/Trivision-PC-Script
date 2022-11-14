@@ -89,7 +89,7 @@ if ($AntwoordTeamViewer -eq 0) {
     Taskkill /F /IM TeamViewer.exe
     start "C:\Program Files (x86)\TeamViewer\uninstall.exe" /S 
     wget https://trivision.nl/downloads/TeamViewer_Host_Setup.exe -OutFile "C:\TeamViewer.exe"
-    start /wait TeamViewer_Host_Setup.exe /S /norestart
+    start /wait TeamViewer_Host_Setup.exe /norestart
 }
 ##Verwijderd HP Bloatware
 # Bron https://gist.github.com/mark05e/a79221b4245962a477a49eb281d97388
