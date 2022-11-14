@@ -24,8 +24,15 @@ Read-Host 'Druk op Enter als TeamViewer en ninite geinstalleerd zijn.'
 Remove-Item "C:\ninite.exe"
 Remove-Item "C:\TeamViewer.exe"
 #Herinstalleert teamviewer als de installatie gefaald is
-#
-#
-#
+$Kop = 'TeamViewer'
+$Vraag = 'Is TeamViewer Correct Geinstalleerd?'
+$Keuzes = '&Ja', '&Nee'
+$Antwoord = $Host.UI.PromptForChoice($Kop, $Vraag, $Keuzes, 1)
+if ($Antwoord -eq 0) {
+   Taskkill /F /IM TeamViewer.exe
+   start "C:\Program Files (x86)\TeamViewer\uninstall.exe" /S 
+   wget https://trivision.nl/downloads/TeamViewer_Host_Setup.exe -OutFile "C:\TeamViewer.exe"
+   start /wait TeamViewer_Host_Setup.exe /S /norestart
+}
 #Start volgende deel van script
 powershell.exe -ExecutionPolicy UnRestricted -File H:\Resources\Remove-HPbloatware.ps1
