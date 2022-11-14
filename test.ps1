@@ -15,8 +15,8 @@ Install-Module PSWindowsUpdate
 #Download en installeert alle windows updates
 Get-WindowsUpdate -AcceptAll -Install 
 Get-WindowsUpdate -AcceptAll -Install
-$KopWindowsUpdate = 'Office taal'
-$VraagWindowsUpdate = 'In welke taal moet office geinstalleerd worden?'
+$KopWindowsUpdate = 'Windows Update'
+$VraagWindowsUpdate = 'Was er een fout tijdens het updaten?'
 $KeuzesWindowsUpdate = '&Ja', '&Nee'
 $AntwoordWindowsUpdate = $Host.UI.PromptForChoice($KopWindowsUpdate, $VraagWindowsUpdate, $KeuzesWindowsUpdate, 1)
 if($AntwoordWindowsUpdate -eq 0){
