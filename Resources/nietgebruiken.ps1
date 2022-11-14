@@ -1,14 +1,20 @@
 # Installeert provider om windows update module te kunnen installeren
 Install-PackageProvider -Name NuGet -MinimumVersion 2.8.5.201 -Force
+Install-PackageProvider -Name NuGet -MinimumVersion 2.8.5.201 -Force
+Install-PackageProvider -Name NuGet -MinimumVersion 2.8.5.201 -Force
 #Zet repository voor de windows update module als vertrouwd
 Set-PSRepository PSGallery -InstallationPolicy Trusted
 #Installeert module voor windows updates in powershell
-Install-Module PSWindowsUpdate 
+Install-Module PSWindowsUpdate
+Install-Module PSWindowsUpdate
+Install-Module PSWindowsUpdate
 #Schakelt updates voor andere microsoft producten in
 $ServiceManager = New-Object -ComObject "Microsoft.Update.ServiceManager"
 $ServiceManager.ClientApplicationID = "My App"
 $ServiceManager.AddService2("7971f918-a847-4430-9279-4a52d1efe18d",7,"") 
 #Download en installeert alle windows updates
+Get-WindowsUpdate -AcceptAll -Install
+Get-WindowsUpdate -AcceptAll -Install
 Get-WindowsUpdate -AcceptAll -Install
 #Start het script opnieuw als er een foutmelding was tijdens het updaten of als er een fout antwoord gegeven is
 $UpdateFailed= Read-Host -Prompt "Was er een foutmelding tijdens het updaten?(ja/nee)"
