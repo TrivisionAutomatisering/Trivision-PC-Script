@@ -28,7 +28,7 @@ $Kop = 'TeamViewer'
 $Vraag = 'Is TeamViewer Correct Geinstalleerd?'
 $Keuzes = '&Ja', '&Nee'
 $Antwoord = $Host.UI.PromptForChoice($Kop, $Vraag, $Keuzes, 1)
-if ($Antwoord -eq 0) {
+if ($Antwoord -eq 1) {
    Taskkill /F /IM TeamViewer.exe
    start "C:\Program Files (x86)\TeamViewer\uninstall.exe" /S 
    wget https://trivision.nl/downloads/TeamViewer_Host_Setup.exe -OutFile "C:\TeamViewer.exe"
