@@ -14,7 +14,7 @@ Set-PSRepository PSGallery -InstallationPolicy Trusted
 Install-Module PSWindowsUpdate
 #Download en installeert alle windows updates 2 keer
 Get-WindowsUpdate -AcceptAll -Install -IgnoreReboot
-Get-WindowsUpdate -AcceptAll -Install -IgnoreReboot
+Get-WindowsUpdate -AcceptAll -Install -IgnoreReboot -ignoreRebootRequired
 $KopWindowsUpdate = 'Windows Update'
 $VraagWindowsUpdate = 'Was er een fout tijdens het updaten?'
 $KeuzesWindowsUpdate = '&Ja', '&Nee'
