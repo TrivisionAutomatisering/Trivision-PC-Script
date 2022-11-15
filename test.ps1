@@ -65,6 +65,13 @@ $ExtraGebruiker = {
 }
 ##
 
+
+#Voert ScriptBlock $ExtraGebruiker uit als er ja geantwoord is op de vraag boven het ScriptBlock
+if ($AntwoordGebruiker -eq 0) {
+    & $ExtraGebruiker
+}
+#
+
 #Vraagt naar nieuwe pc naam
 $NewName = Read-Host -Prompt "Wat is de naam van de PC?(bijv. WS01 of LT01)"
 #
@@ -281,12 +288,6 @@ $ServiceManager.AddService2("7971f918-a847-4430-9279-4a52d1efe18d", 7, "")
 #Voert ScriptBlock $Office365 uit als er ja geantwoord is op de vraag onder het ScriptBlock
 if ($AntwoordOffice -eq 0) {
     & $Office365
-}
-#
-
-#Voert ScriptBlock $ExtraGebruiker uit als er ja geantwoord is op de vraag onder het ScriptBlock
-if ($AntwoordGebruiker -eq 0) {
-    & $ExtraGebruiker
 }
 #
 
