@@ -74,6 +74,7 @@ if ($AntwoordGebruiker -eq 0) {
 
 #Vraagt naar nieuwe pc naam
 $NewName = Read-Host -Prompt "Wat is de naam van de PC?(bijv. WS01 of LT01)"
+Rename-Computer -NewName "$NewName"
 #
 
 ## TeamViewer + Ninite installatie
