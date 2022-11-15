@@ -12,7 +12,7 @@ Install-PackageProvider -Name NuGet -MinimumVersion 2.8.5.201 -Force | Out-Null
 Set-PSRepository PSGallery -InstallationPolicy Trusted
 #Installeert module voor windows updates in powershell
 Install-Module PSWindowsUpdate
-#Download en installeert alle windows updates
+#Download en installeert alle windows updates 2 keer
 Get-WindowsUpdate -AcceptAll -Install 
 Get-WindowsUpdate -AcceptAll -Install
 $KopWindowsUpdate = 'Windows Update'
@@ -67,7 +67,9 @@ $ExtraGebruiker = {
 
 #Vraagt naar nieuwe pc naam
 $NewName = Read-Host -Prompt "Wat is de naam van de PC?(bijv. WS01 of LT01)"
+#
 
+## TeamViewer + Ninite installatie
 #Download TeamViewer
 Invoke-WebRequest https://trivision.nl/downloads/TeamViewer_Host_Setup.exe -OutFile "C:\TeamViewer.exe"
 #Voert TeamViewer uit
@@ -91,7 +93,9 @@ if ($AntwoordTeamViewer -eq 0) {
     wget https://trivision.nl/downloads/TeamViewer_Host_Setup.exe -OutFile "C:\TeamViewer.exe"
     start /wait TeamViewer_Host_Setup.exe /norestart
 }
-##Verwijderd HP Bloatware
+##
+
+##Verwijdert HP Bloatware
 # Bron https://gist.github.com/mark05e/a79221b4245962a477a49eb281d97388
 # List of built-in apps to remove
 $UninstallPackages = @(
@@ -196,11 +200,11 @@ Catch {
 }
 ##
 
-##Schakelt BitLocker in op de C schijfals dit niet ingeschakeld is
+#Schakelt BitLocker in op de C schijf als dit niet ingeschakeld is
 if (((Get-BitLockerVolume | Where-Object -Property MountPoint -Contains C:).ProtectionStatus) -eq 'Off') {
     Enable-BitLocker -MountPoint "C:" -RecoveryPasswordProtector
 }
-##
+#
 
 ## Specs + BitLocker naar CSV Script
 #Slaat specs en bitlocker op als variabele
@@ -215,7 +219,7 @@ $DimmType2 = (Get-CimInstance -Class CIM_PhysicalMemory).SMBIOSMemoryType | Sele
 $BitLockerID = (Get-BitLockerVolume -MountPoint C).KeyProtector | Where-Object RecoveryPassword | Select-Object -ExpandProperty KeyProtectorId
 $BitLockerSleutel = (Get-BitLockerVolume -MountPoint C).KeyProtector | Where-Object RecoveryPassword | Select-Object -ExpandProperty RecoveryPassword
 #
-#Output niks na $TotaalGeheugen in $Specs als er 2 verschillende ramtype's in 1 systeem zitten bijv. ddr4 en lpddr4
+#Output niks na $TotaalGeheugen in $Specs als er 2 verschillende ramtype's in 1 systeem zitten
 if ($DimmType1 -eq $DimmType2) {
     $GeheugenMHZ = Write-Output "@"(Get-CimInstance -Class CIM_PhysicalMemory -ErrorAction Stop | Measure-Object Speed -Minimum).Minimum "MHZ"
 }
@@ -260,7 +264,7 @@ if ((Test-Path -Path 'C:\Windows.old' -PathType Container) -eq $true) {
 }
 #
 
-#Zet UAC uit
+#Zet UAC uit via registry
 Set-ItemProperty -Path REGISTRY::HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\System -Name ConsentPromptBehaviorAdmin -Value 0
 #
 
@@ -289,3 +293,4 @@ if ($AntwoordGebruiker -eq 0) {
 #Verwijdert alle ps1, xml en exe bestanden en herstart de computer 
 Get-ChildItem H:\ -Include *.ps1, *.xml, *.exe -Recurse | Remove-Item -Recurse
 Restart-Computer
+#
