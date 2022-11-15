@@ -13,8 +13,8 @@ Set-PSRepository PSGallery -InstallationPolicy Trusted
 #Installeert module voor windows updates in powershell
 Install-Module PSWindowsUpdate
 #Download en installeert alle windows updates 2 keer
-Get-WindowsUpdate -AcceptAll -Install 
-Get-WindowsUpdate -AcceptAll -Install
+Get-WindowsUpdate -AcceptAll -Install -IgnoreReboot
+Get-WindowsUpdate -AcceptAll -Install -IgnoreReboot
 $KopWindowsUpdate = 'Windows Update'
 $VraagWindowsUpdate = 'Was er een fout tijdens het updaten?'
 $KeuzesWindowsUpdate = '&Ja', '&Nee'
