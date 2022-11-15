@@ -1,7 +1,10 @@
 #Neemt variabele over vanuit het cmd start script
 param ([string]$ScriptDrive)
+#
+
 #Verandert usb schijf letter naar H:
 Get-Partition -DriveLetter $ScriptDrive | Set-Partition -NewDriveLetter H
+#
 
 ## Windows Update Script
 #Windows Update ScriptBlock
