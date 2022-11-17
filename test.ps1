@@ -2,6 +2,8 @@
 param ([string]$ScriptDrive)
 #
 
+#Requires -RunAsAdministrator
+
 #Verandert usb schijf letter naar H:
 Get-Partition -DriveLetter $ScriptDrive | Set-Partition -NewDriveLetter H
 #
@@ -266,7 +268,7 @@ Write-Host "De tijd en datum zijn nu goed gezet."
 tzutil /s "W. Europe Standard Time"
 #
 ##
-    
+
 #Verwijdert Windows.old als het bestaat
 if ((Test-Path -Path 'C:\Windows.old' -PathType Container) -eq $true) {
     TAKEOWN /f C:\Windows.old\*.*
