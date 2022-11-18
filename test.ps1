@@ -1,7 +1,7 @@
 #Neemt variabele over vanuit het cmd start script
 param ([string]$ScriptDrive)
 #
-
+Set-ExecutionPolicy Restricted
 #Requires -RunAsAdministrator
 
 #Verandert usb schijf letter naar H:
@@ -17,6 +17,7 @@ Install-PackageProvider -Name NuGet -MinimumVersion 2.8.5.201 -Force | Out-Null
 Set-PSRepository PSGallery -InstallationPolicy Trusted
 #Installeert module voor windows updates in powershell
 Install-Module PSWindowsUpdate
+Import-Module PSWindowsUpdate
 #Download en installeert alle windows updates 2 keer
 Get-WindowsUpdate -AcceptAll -Install -IgnoreReboot
 Get-WindowsUpdate -AcceptAll -Install -IgnoreReboot -ignoreRebootRequired
@@ -297,5 +298,6 @@ if ($AntwoordOffice -eq 0) {
 
 #Verwijdert alle ps1, xml en exe bestanden en herstart de computer 
 Get-ChildItem H:\ -Include *.ps1, *.xml, *.exe -Recurse | Remove-Item -Recurse
+Set-ExecutionPolicy Restricted
 Restart-Computer
 #
