@@ -66,7 +66,6 @@ $ExtraGebruiker = {
     if ($AntwoordGebruiker -eq 0) {
         & $ExtraGebruiker
     }
-    #Vraagt om extra gebruiker 
 }
 ##
 
