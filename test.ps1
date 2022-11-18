@@ -265,7 +265,6 @@ w32tm /resync /force
 Write-Host "De tijd en datum zijn nu goed gezet."
 #Verandert tijdzone
 tzutil /s "W. Europe Standard Time"
-#
 ##
 
 #Verwijdert Windows.old als het bestaat
