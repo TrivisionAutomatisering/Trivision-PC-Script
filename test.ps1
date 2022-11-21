@@ -290,6 +290,8 @@ $ServiceManager.AddService2("7971f918-a847-4430-9279-4a52d1efe18d", 7, "")
 & $WindowsUpdate
 #
 
+Set-Itemproperty -path 'HKLM:\SOFTWARE\Microsoft\WindowsUpdate\UX\Settings' -Name 'RestartNotificationsAllowed2' -Value 1 -Type DWord -Force
+
 #Voert ScriptBlock $Office365 uit als er ja geantwoord is op de vraag onder het ScriptBlock
 if ($AntwoordOffice -eq 0) {
     & $Office365
