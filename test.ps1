@@ -1,7 +1,7 @@
 #Neemt variabele over vanuit het cmd start script
 param ([string]$ScriptDrive)
 #
-Set-ExecutionPolicy Restricted
+Set-ExecutionPolicy UnRestricted
 #Requires -RunAsAdministrator
 
 #Verandert usb schijf letter naar H:
