@@ -299,7 +299,7 @@ if ($AntwoordOffice -eq 0) {
 #
 
 #Verwijdert alle ps1, xml en exe bestanden en herstart de computer 
-Get-ChildItem H:\ -Include *.ps1, *.xml, *.exe -Recurse | Remove-Item -Recurse -ErrorAction SilentlyContinue
+Get-ChildItem H:\ -Include *.ps1, *.xml, *.exe | Remove-Item -ErrorAction SilentlyContinue
 Set-ExecutionPolicy Restricted -ErrorAction SilentlyContinue
 Restart-Computer
 #
