@@ -250,7 +250,7 @@ $Specs = [PSCustomObject]@{
     SerieNummer        = "$SerieNummer"
     SchijfInfo         = "$SchijfGrootte GiB $SchijfNaam"
     RAMInfo            = "$TotaalGeheugen $GeheugenMHZ"
-    "ID:"              = "$BitlockerID" -replace('{') -replace('}')
+    "ID:"              = "$BitlockerID" -replace('[{}]')
     "Herstel Sleutel:" = "$BitLockerSleutel"
 }
 $specs | Export-Csv H:\PcInfo$NewName.csv -NoTypeInformation
