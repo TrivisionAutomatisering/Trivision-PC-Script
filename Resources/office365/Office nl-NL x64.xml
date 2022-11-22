@@ -16,9 +16,9 @@
     </Product>
   </Add>
   
-  <--  <Property Name="FORCEAPPSHUTDOWN" Value="False"/>
+  <!--  <Property Name="FORCEAPPSHUTDOWN" Value="False"/> -->
 
-  <--  <Updates Enabled="TRUE" Channel="Current" /> -->
+  <!--  <Updates Enabled="TRUE" Channel="Current" /> -->
 
   <--  <Display Level="None" AcceptEULA="TRUE" />  -->
 
