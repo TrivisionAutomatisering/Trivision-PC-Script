@@ -245,13 +245,13 @@ else {
 #
 #Output bitlocker id, bitlocker key, PC model, CPU, serienummer, RAM info en drive info naar een csv bestand
 $Specs = [PSCustomObject]@{
-    Model                       = "$Model"
-    CPU                         = "$CPU"
-    SerieNummer                 = "$SerieNummer"
-    SchijfInfo                  = "$SchijfGrootte GiB $SchijfNaam"
-    RAMInfo                     = "$TotaalGeheugen $GeheugenMHZ"
-    "Bitlocker ID"              = "$BitlockerID"
-    "Bitlocker Herstel Sleutel" = "$BitLockerSleutel"
+    Model              = "$Model"
+    CPU                = "$CPU"
+    SerieNummer        = "$SerieNummer"
+    SchijfInfo         = "$SchijfGrootte GiB $SchijfNaam"
+    RAMInfo            = "$TotaalGeheugen $GeheugenMHZ"
+    "ID:"              = "$BitlockerID"
+    "Herstel Sleutel:" = "$BitLockerSleutel"
 }
 $specs | Export-Csv H:\PcInfo$NewName.csv -NoTypeInformation
 #
