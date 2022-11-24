@@ -77,6 +77,18 @@ if ($AntwoordGebruiker -eq 0) {
 }
 #
 
+#Schakelt BitLocker in op de C schijf als dit niet ingeschakeld is
+$KopBitLocker = 'BitLocker'
+$VraagBitLocker = 'Wil je BitLocker installeren?'
+$KeuzesBitLocker = '&Ja', '&Nee'
+$AntwoordBitlocker = $Host.UI.PromptForChoice($KopBitLocker, $VraagBitLocker, $KeuzesBitLocker, 1)
+if ($AntwoordBitLocker -eq 0) {
+    if (((Get-BitLockerVolume | Where-Object -Property MountPoint -Contains C:).ProtectionStatus) -eq 'Off') {
+        Enable-BitLocker -MountPoint "C:" -RecoveryPasswordProtector
+    }
+}
+#
+
 #Vraagt naar nieuwe pc naam
 $NewName = Read-Host -Prompt "Wat is de naam van de PC?(bijv. WS01 of LT01)"
 Rename-Computer -NewName "$NewName"
@@ -91,7 +103,7 @@ Invoke-WebRequest https://trivision.nl/downloads/TeamViewer_Host_Setup.exe -OutF
 #Invoke-WebRequest https://ninite.com/7zip-adoptjdkx8-chrome-foxit/ninite.exe -OutFile "C:\ninite.exe"
 Invoke-WebRequest http://node.tmcommunity.net/NinitePro.exe -Outfile "C:\ninite.exe"
 #Voert ninite uit
-start 'C:\' -ArgumentList '/allusers /select 7-zip "Java x64" Chrome "Foxit Reader"'
+start 'C:\' -ArgumentList '/allusers /select 7-zip "JDK (AdoptOpenJDK) x64" Chrome "Foxit Reader"'
 Read-Host 'Druk op Enter als TeamViewer en ninite geinstalleerd zijn.'
 #Verwijderd ninite en TeamViewer bestanden
 Remove-Item "C:\ninite.exe"
@@ -218,12 +230,6 @@ Catch {
     Write-Warning -Object  "Failed to uninstall HP Wolf Security 2 using MSI - Error message: $($_.Exception.Message)"
 }
 ##
-
-#Schakelt BitLocker in op de C schijf als dit niet ingeschakeld is
-if (((Get-BitLockerVolume | Where-Object -Property MountPoint -Contains C:).ProtectionStatus) -eq 'Off') {
-    Enable-BitLocker -MountPoint "C:" -RecoveryPasswordProtector
-}
-#
 
 ## Specs + BitLocker naar CSV Script
 #Slaat specs en bitlocker op als variabele
