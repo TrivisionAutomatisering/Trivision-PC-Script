@@ -107,6 +107,9 @@ Invoke-WebRequest https://trivision.nl/downloads/TeamViewer_Host_Setup.exe -OutF
 #Voert TeamViewer uit
 & "C:\TeamViewer.exe"
 Read-Host 'Druk op Enter als TeamViewer geinstalleerd is.'
+} elseif($AntwoordTeamviewer -eq 2){
+    New-Item -Path "C:/Trivision Support" -ItemType Directory
+    Invoke-WebRequest https://trivision.nl/downloads/TeamViewerQS.exe -OutFile "C:/Trivision Support/TeamViewerQS.exe"
 }
 
 #Download ninite
