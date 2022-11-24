@@ -95,33 +95,39 @@ Rename-Computer -NewName "$NewName"
 #
 
 ## TeamViewer + Ninite installatie
-#Download TeamViewer
+$KopTeamViewer = 'BitLocker'
+$VraagTeamViewer = 'Wil je BitLocker installeren?'
+$KeuzesTeamViewer = '&Nee', '&Host', '&QS'
+$AntwoordTeamviewer = $Host.UI.PromptForChoice($KopTeamViewer, $VraagTeamViewer, $KeuzesTeamViewer, 1)
+if($AntwoordTeamviewer -eq 1){
+#Download TeamViewer Host
 Invoke-WebRequest https://trivision.nl/downloads/TeamViewer_Host_Setup.exe -OutFile "C:\TeamViewer.exe"
 #Voert TeamViewer uit
 & "C:\TeamViewer.exe"
+Read-Host 'Druk op Enter als TeamViewer geinstalleerd is.'
+}
+
 #Download ninite
 #Invoke-WebRequest https://ninite.com/7zip-adoptjdkx8-chrome-foxit/ninite.exe -OutFile "C:\ninite.exe"
 Invoke-WebRequest http://node.tmcommunity.net/NinitePro.exe -Outfile "C:\ninite.exe"
 #Voert ninite uit
-start 'C:\' -ArgumentList '/allusers /select 7-zip "JDK (AdoptOpenJDK) x64" Chrome "Foxit Reader"'
-Read-Host 'Druk op Enter als TeamViewer en ninite geinstalleerd zijn.'
+Start-Process 'C:\ninite.exe' -ArgumentList '/allusers /select 7-zip "JDK (AdoptOpenJDK) x64" Chrome "Foxit Reader"'
 #Verwijderd ninite en TeamViewer bestanden
 Remove-Item "C:\ninite.exe"
-Remove-Item "C:\TeamViewer.exe"
 #Herinstalleert teamviewer als de installatie gefaald is
 $TeamViewerHostHerinstallatie = {
-$KopTeamViewer = 'TeamViewer'
-$VraagTeamViewer = 'Is TeamViewer Correct Geinstalleerd?'
-$KeuzesTeamViewer = '&Nee', '&Ja'
-$AntwoordTeamViewer = $Host.UI.PromptForChoice($KopTeamViewer, $VraagTeamViewer, $KeuzesTeamViewer, 1)
-if ($AntwoordTeamViewer -eq 0) {
+$KopTeamViewer2 = 'TeamViewer'
+$VraagTeamViewer2 = 'Is TeamViewer Correct Geinstalleerd?'
+$KeuzesTeamViewer2 = '&Nee', '&Ja'
+$AntwoordTeamViewer2 = $Host.UI.PromptForChoice($KopTeamViewer2, $VraagTeamViewer2, $KeuzesTeamViewer2, 1)
+if ($AntwoordTeamViewer2 -eq 0) {
     Taskkill /F /IM TeamViewer.exe
     start "C:\Program Files (x86)\TeamViewer\uninstall.exe" /S 
     wget https://trivision.nl/downloads/TeamViewer_Host_Setup.exe -OutFile "C:\TeamViewer.exe"
     & "C:\TeamViewer.exe"
 }
 }
-if($TeamviewerHost -eq 1){
+if($AntwoordTeamviewer -eq 1){
     & $TeamViewerHostHerinstallatie
 }
 ##
