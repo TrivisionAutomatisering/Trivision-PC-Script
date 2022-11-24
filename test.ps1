@@ -95,8 +95,8 @@ Rename-Computer -NewName "$NewName"
 #
 
 ## TeamViewer + Ninite installatie
-$KopTeamViewer = 'BitLocker'
-$VraagTeamViewer = 'Wil je BitLocker installeren?'
+$KopTeamViewer = 'TeamViewer'
+$VraagTeamViewer = 'Wil je TeamViewer installeren?'
 $KeuzesTeamViewer = '&Nee', '&Host', '&QS'
 $AntwoordTeamviewer = $Host.UI.PromptForChoice($KopTeamViewer, $VraagTeamViewer, $KeuzesTeamViewer, 1)
 if($AntwoordTeamviewer -eq 1){
