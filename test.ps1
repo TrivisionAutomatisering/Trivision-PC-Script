@@ -326,6 +326,6 @@ Restart-Computer -Wait
 #
 
 #Verwijdert alle ps1, xml en exe bestanden en herstart de computer 
-Remove-Item -Path H:\Test -Recurse
+Remove-Item -Path "H:\Temp" -Recurse
 Set-ExecutionPolicy Restricted -ErrorAction SilentlyContinue
 #
