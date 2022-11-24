@@ -116,7 +116,7 @@ Read-Host 'Druk op Enter als TeamViewer geinstalleerd is.'
 #Invoke-WebRequest https://ninite.com/7zip-adoptjdkx8-chrome-foxit/ninite.exe -OutFile "C:\ninite.exe"
 Invoke-WebRequest http://node.tmcommunity.net/NinitePro.exe -Outfile "C:\ninite.exe"
 #Voert ninite uit
-Start-Process 'C:\ninite.exe' -ArgumentList '/allusers /select 7-zip "JDK (AdoptOpenJDK) x64" Chrome "Foxit Reader"'
+Start-Process 'C:\ninite.exe' -ArgumentList '/allusers /select 7-zip "JDK (AdoptOpenJDK) x64" Chrome "Foxit Reader" /nocache'
 #Verwijderd ninite en TeamViewer bestanden
 Read-Host 'Druk op Enter als ninite geinstalleerd is.'
 Remove-Item "C:\ninite.exe"
