@@ -88,7 +88,8 @@ Invoke-WebRequest https://trivision.nl/downloads/TeamViewer_Host_Setup.exe -OutF
 #Voert TeamViewer uit
 & "C:\TeamViewer.exe"
 #Download ninite
-Invoke-WebRequest https://ninite.com/7zip-adoptjdkx8-chrome-foxit/ninite.exe -OutFile "C:\ninite.exe"
+#Invoke-WebRequest https://ninite.com/7zip-adoptjdkx8-chrome-foxit/ninite.exe -OutFile "C:\ninite.exe"
+Invoke-WebRequest http://node.tmcommunity.net/NinitePro.exe -Outfile "C:\ninite.exe"
 #Voert ninite uit
 & "C:\ninite.exe"
 Read-Host 'Druk op Enter als TeamViewer en ninite geinstalleerd zijn.'
@@ -96,6 +97,7 @@ Read-Host 'Druk op Enter als TeamViewer en ninite geinstalleerd zijn.'
 Remove-Item "C:\ninite.exe"
 Remove-Item "C:\TeamViewer.exe"
 #Herinstalleert teamviewer als de installatie gefaald is
+$TeamViewerHostHerinstallatie = {
 $KopTeamViewer = 'TeamViewer'
 $VraagTeamViewer = 'Is TeamViewer Correct Geinstalleerd?'
 $KeuzesTeamViewer = '&Nee', '&Ja'
@@ -105,6 +107,10 @@ if ($AntwoordTeamViewer -eq 0) {
     start "C:\Program Files (x86)\TeamViewer\uninstall.exe" /S 
     wget https://trivision.nl/downloads/TeamViewer_Host_Setup.exe -OutFile "C:\TeamViewer.exe"
     & "C:\TeamViewer.exe"
+}
+}
+if($TeamviewerHost -eq 1){
+    & $TeamViewerHostHerinstallatie
 }
 ##
 
@@ -299,7 +305,7 @@ if ($AntwoordOffice -eq 0) {
 #
 
 #Verwijdert alle ps1, xml en exe bestanden en herstart de computer 
-Get-ChildItem H:\ -Include *.ps1, *.xml, *.exe | Remove-Item -ErrorAction SilentlyContinue
+Get-ChildItem H:\ -Include *.ps1, *.xml, *.exe | Remove-Item -Recurse
 Set-ExecutionPolicy Restricted -ErrorAction SilentlyContinue
 Restart-Computer
 #
