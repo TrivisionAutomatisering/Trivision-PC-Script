@@ -96,7 +96,7 @@ $NewName = Read-Host -Prompt "Wat is de naam van de PC?(bijv. WS01 of LT01)"
 Rename-Computer -NewName "$NewName"
 #
 
-## TeamViewer + Ninite installatie
+## TeamViewer installatie
 $KopTeamViewer = 'TeamViewer'
 $VraagTeamViewer = 'Wil je TeamViewer installeren?'
 $KeuzesTeamViewer = '&Nee', '&Host', '&QS'
@@ -112,13 +112,6 @@ Read-Host 'Druk op Enter als TeamViewer geinstalleerd is.'
     Invoke-WebRequest https://trivision.nl/downloads/TeamViewerQS.exe -OutFile "C:/Trivision Support/TeamViewerQS.exe"
 }
 
-#Download ninite
-#Invoke-WebRequest https://ninite.com/7zip-adoptjdkx8-chrome-foxit/ninite.exe -OutFile "C:\ninite.exe"
-Invoke-WebRequest http://node.tmcommunity.net/NinitePro.exe -Outfile "C:\ninite.exe"
-#Voert ninite uit
-Start-Process 'C:\ninite.exe' -ArgumentList '/allusers /select 7-zip "JDK (AdoptOpenJDK) x64" Chrome "Foxit Reader" /nocache' -Wait
-#Verwijderd ninite en TeamViewer bestanden
-Remove-Item "C:\ninite.exe"
 #Herinstalleert teamviewer als de installatie gefaald is
 $TeamViewerHostHerinstallatie = {
 $KopTeamViewer2 = 'TeamViewer'
@@ -317,6 +310,15 @@ if ($AntwoordOffice -eq 0) {
     & $Office365
 }
 #
+
+##Download ninite
+#Invoke-WebRequest https://ninite.com/7zip-adoptjdkx8-chrome-foxit/ninite.exe -OutFile "C:\ninite.exe"
+Invoke-WebRequest http://node.tmcommunity.net/NinitePro.exe -Outfile "C:\ninite.exe"
+#Voert ninite uit
+Start-Process 'C:\ninite.exe' -ArgumentList '/allusers /select 7-zip "JDK (AdoptOpenJDK) x64" Chrome "Foxit Reader" /nocache' -Wait
+#Verwijderd ninite en TeamViewer bestanden
+Remove-Item "C:\ninite.exe"
+##
 
 #Voert ScriptBlock $WindowsUpdate uit
 & $WindowsUpdate
