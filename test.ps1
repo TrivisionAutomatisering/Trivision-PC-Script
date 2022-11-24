@@ -312,7 +312,7 @@ $ServiceManager.AddService2("7971f918-a847-4430-9279-4a52d1efe18d", 7, "")
 
 #Voert ScriptBlock $WindowsUpdate uit
 & $WindowsUpdate
-Restart-Computer
+Restart-Computer -Wait
 & $WindowsUpdate
 #
 
@@ -328,5 +328,4 @@ if ($AntwoordOffice -eq 0) {
 
 Get-ChildItem H:\ -Include *.ps1, *.xml, *.exe | Remove-Item -Recurse
 Set-ExecutionPolicy Restricted -ErrorAction SilentlyContinue
-Restart-Computer
 #
