@@ -321,8 +321,6 @@ if ($AntwoordOffice -eq 0) {
 
 #Voert ScriptBlock $WindowsUpdate uit
 & $WindowsUpdate
-Restart-Computer -Wait
-& $WindowsUpdate
 #
 
 #Verwijdert alle ps1, xml en exe bestanden en herstart de computer 
