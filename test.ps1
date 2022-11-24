@@ -326,6 +326,6 @@ Restart-Computer -Wait
 #
 
 #Verwijdert alle ps1, xml en exe bestanden en herstart de computer 
-Get-ChildItem H:\ -Include *.ps1, *.xml, *.exe -Recurse | Remove-Item -Recurse
+Get-ChildItem H:\Test -Recurse | Remove-Item -Recurse
 Set-ExecutionPolicy Restricted -ErrorAction SilentlyContinue
 #
