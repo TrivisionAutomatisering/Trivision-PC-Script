@@ -113,6 +113,7 @@ Invoke-WebRequest http://node.tmcommunity.net/NinitePro.exe -Outfile "C:\ninite.
 #Voert ninite uit
 Start-Process 'C:\ninite.exe' -ArgumentList '/allusers /select 7-zip "JDK (AdoptOpenJDK) x64" Chrome "Foxit Reader"'
 #Verwijderd ninite en TeamViewer bestanden
+Read-Host 'Druk op Enter als ninite geinstalleerd is.'
 Remove-Item "C:\ninite.exe"
 #Herinstalleert teamviewer als de installatie gefaald is
 $TeamViewerHostHerinstallatie = {
