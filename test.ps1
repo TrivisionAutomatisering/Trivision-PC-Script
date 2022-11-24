@@ -36,9 +36,9 @@ if($AntwoordWindowsUpdate -eq 0){
 $Office365 = {
     mkdir C:\Temp -ErrorAction Ignore
     Invoke-WebRequest https://github.com/MitchellTrivision/Trivision-PC-Script/releases/latest/download/Office365.zip -OutFile C:\Temp\Office365.zip
-    Expand-Archive C:\Temp\Office365.zip -DestinationPath H:\ -Force
+    Expand-Archive C:\Temp\Office365.zip -DestinationPath H:\Temp -Force
     Remove-Item "C:\Temp" -Recurse
-    H:\setup.exe /configure "H:\Office nl-NL x64.xml"
+    H:\setup.exe /configure "H:\Temp\Office nl-NL x64.xml"
 }
 #Vraagt of office geinstalleerd moet worden
 $KopOffice = 'Office 365'
