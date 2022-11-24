@@ -91,7 +91,7 @@ Invoke-WebRequest https://trivision.nl/downloads/TeamViewer_Host_Setup.exe -OutF
 #Invoke-WebRequest https://ninite.com/7zip-adoptjdkx8-chrome-foxit/ninite.exe -OutFile "C:\ninite.exe"
 Invoke-WebRequest http://node.tmcommunity.net/NinitePro.exe -Outfile "C:\ninite.exe"
 #Voert ninite uit
-& "C:\ninite.exe"
+start 'C:\' -ArgumentList '/allusers /select 7-zip "Java x64" Chrome "Foxit Reader"'
 Read-Host 'Druk op Enter als TeamViewer en ninite geinstalleerd zijn.'
 #Verwijderd ninite en TeamViewer bestanden
 Remove-Item "C:\ninite.exe"
