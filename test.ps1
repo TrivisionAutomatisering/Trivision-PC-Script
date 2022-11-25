@@ -78,11 +78,7 @@ if ($AntwoordGebruiker -eq 0) {
 #
 
 #Schakelt BitLocker in op de C schijf als dit niet ingeschakeld is
-$KopBitLocker = 'BitLocker'
-$VraagBitLocker = 'Wil je BitLocker instellen?'
-$KeuzesBitLocker = '&Ja', '&Nee'
-$AntwoordBitlocker = $Host.UI.PromptForChoice($KopBitLocker, $VraagBitLocker, $KeuzesBitLocker, 1)
-if ($AntwoordBitLocker -eq 0) {
+if ((Test-Path H:\geenbitlocker.txt) -eq $False) {
     if (((Get-BitLockerVolume | Where-Object -Property MountPoint -Contains C:).ProtectionStatus) -eq 'Off') {
         Enable-BitLocker -MountPoint "C:" -RecoveryPasswordProtector
     } else{
