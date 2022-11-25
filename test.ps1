@@ -105,8 +105,7 @@ if($AntwoordTeamviewer -eq 1){
 #Download TeamViewer Host
 Invoke-WebRequest https://trivision.nl/downloads/TeamViewer_Host_Setup.exe -OutFile "C:\TeamViewer.exe"
 #Voert TeamViewer uit
-& "C:\TeamViewer.exe"
-Read-Host 'Druk op Enter als TeamViewer geinstalleerd is.'
+    Start-Process "C:\TeamViewer.exe" -Wait
 } elseif($AntwoordTeamviewer -eq 2){
     New-Item -Path "C:/Trivision Support" -ItemType Directory
     Invoke-WebRequest https://trivision.nl/downloads/TeamViewerQS.exe -OutFile "C:/Trivision Support/TeamViewerQS.exe"
