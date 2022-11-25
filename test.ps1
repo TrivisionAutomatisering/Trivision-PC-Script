@@ -327,4 +327,5 @@ Remove-Item "C:\ninite.exe"
 #Verwijdert alle ps1, xml en exe bestanden en herstart de computer 
 Remove-Item "H:\Temp" -Recurse
 Set-ExecutionPolicy Restricted -ErrorAction SilentlyContinue
+Restart-Computer
 #
