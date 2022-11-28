@@ -229,6 +229,21 @@ Catch {
 ##
 
 ## Specs + BitLocker naar CSV Script
+#Checkt ram type en zet variabele hiervoor
+$SMBiosMemoryType = ((Get-CimInstance -Class CIM_PhysicalMemory).SMBIOSMemoryType)
+if($SMBiosMemoryType -in 26,94,165){
+    $MemoryType = "DDR4"
+} elseif($SMBiosMemoryType -eq 30){
+    $MemoryType = "LPDDR4"
+} elseif($SMBiosMemoryType -eq 34){
+    $MemoryType = "DDR5"
+} elseif($SMBiosMemoryType -eq 35){
+    $MemoryType = "LPDDR5"
+} elseif($SMBiosMemoryType -in 24,58,42){
+    $MemoryType = "DDR3"
+} elseif($SMBiosMemoryType -eq 29){
+    $MemoryType = "LPDDR3"
+}
 #Slaat specs en bitlocker op als variabele
 $Model = (Get-CimInstance Win32_ComputerSystem).Model
 $CPU = (Get-CimInstance Win32_Processor -Property Name).Name
@@ -258,7 +273,7 @@ $Specs = [PSCustomObject]@{
     SerieNummer        = "$SerieNummer"
     CPU                = "$CPU"
     SchijfInfo         = "$SchijfGrootte GiB $SchijfNaam"
-    RAMInfo            = "$TotaalGeheugen $GeheugenMHZ"
+    RAMInfo            = "$MemoryType $TotaalGeheugen $GeheugenMHZ"
     PCNaam             = "$NewName"
     "ID:"              = "$BitlockerID" -replace('[{}]')
     "Herstel Sleutel:" = "$BitLockerSleutel"
