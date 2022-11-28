@@ -34,10 +34,8 @@ if($AntwoordWindowsUpdate -eq 0){
 ##Office Script
 #Office ScriptBlock installeert office met dezelfde taal als de OS
 $Office365 = {
-    mkdir C:\Temp -ErrorAction Ignore
-    Invoke-WebRequest https://github.com/MitchellTrivision/Trivision-PC-Script/releases/latest/download/Office365.zip -OutFile C:\Temp\Office365.zip
-    Expand-Archive C:\Temp\Office365.zip -DestinationPath H:\Temp -Force
-    Remove-Item "C:\Temp" -Recurse
+    Invoke-WebRequest https://github.com/MitchellTrivision/Trivision-PC-Script/releases/latest/download/Office365.zip -OutFile H:\Temp\Office365.zip
+    Expand-Archive H:\Temp\Office365.zip -DestinationPath H:\Temp -Force
     Start-Process "H:\Temp\setup.exe" -ArgumentList "/configure "H:\Temp\Office nl-NL x64.xml""
 }
 #Vraagt of office geinstalleerd moet worden
