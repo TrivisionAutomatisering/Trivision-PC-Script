@@ -243,6 +243,8 @@ if($SMBiosMemoryType -in 26,94,165){
     $MemoryType = "DDR3"
 } elseif($SMBiosMemoryType -eq 29){
     $MemoryType = "LPDDR3"
+} else{
+    $SMBiosMemoryType = $Null
 }
 #Slaat specs en bitlocker op als variabele
 $Model = (Get-CimInstance Win32_ComputerSystem).Model
