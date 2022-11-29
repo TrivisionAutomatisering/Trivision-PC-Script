@@ -113,8 +113,8 @@ $KeuzesTeamViewer2 = '&Nee', '&Ja'
 $AntwoordTeamViewer2 = $Host.UI.PromptForChoice($KopTeamViewer2, $VraagTeamViewer2, $KeuzesTeamViewer2, 1)
 if ($AntwoordTeamViewer2 -eq 0) {
     Taskkill /F /IM TeamViewer.exe
-    start "C:\Program Files (x86)\TeamViewer\uninstall.exe" /S 
-    wget https://trivision.nl/downloads/TeamViewer_Host_Setup.exe -OutFile "C:\TeamViewer.exe"
+    Start-Process "C:\Program Files (x86)\TeamViewer\uninstall.exe" /S 
+    Invoke-WebRequest https://trivision.nl/downloads/TeamViewer_Host_Setup.exe -OutFile "C:\TeamViewer.exe"
     & "C:\TeamViewer.exe"
 }
 }
@@ -246,6 +246,7 @@ if($SMBiosMemoryType -in 26,94,165){
 } else{
     $SMBiosMemoryType = $Null
 }
+#
 #Slaat specs en bitlocker op als variabele
 $Model = (Get-CimInstance Win32_ComputerSystem).Model
 $CPU = (Get-CimInstance Win32_Processor -Property Name).Name
