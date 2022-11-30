@@ -230,7 +230,7 @@ Catch {
 
 ## Specs + BitLocker naar CSV Script
 #Checkt ram type en zet variabele hiervoor
-$SMBiosMemoryType = ((Get-CimInstance -Class CIM_PhysicalMemory).SMBIOSMemoryType)
+$SMBiosMemoryType = ((Get-CimInstance -Class CIM_PhysicalMemory).SMBIOSMemoryType | Select-Object -First 1)
 if($SMBiosMemoryType -in 26,94,165){
     $MemoryType = "DDR4"
 } elseif($SMBiosMemoryType -eq 30){
