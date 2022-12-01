@@ -53,7 +53,7 @@ $KeuzesGebruiker = '&Ja', '&Nee'
 $AntwoordGebruiker = $Host.UI.PromptForChoice($KopGebruiker, $VraagGebruiker, $KeuzesGebruiker, 1)
 $ExtraGebruiker = {
     $UserName = Read-Host -Prompt "Wat is de gebruikersnaam?"
-    $UserPswd = Read-Host -Prompt "Wat is het wachtwoord?" -MaskInput
+    $UserPswd = Read-Host -Prompt "Wat is het wachtwoord?"
     $UserFullName = Read-Host -Prompt "Wat is de volledige naam?"
     $secureString = ConvertTo-SecureString $UserPswd -asplaintext -Force
     New-LocalUser -Name "$UserName" -Password $secureString -FullName "$UserFullName"
