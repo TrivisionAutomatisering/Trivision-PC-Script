@@ -254,21 +254,9 @@ $SerieNummer = (Get-CimInstance Win32_BIOS).SerialNumber
 $SchijfNaam = (Get-CimInstance Win32_DiskDrive | Where-Object -Property DeviceID -Contains \\.\PHYSICALDRIVE0).Caption
 $SchijfGrootte = [math]::Round((Get-CimInstance Win32_DiskDrive -Filter 'DeviceID="\\\\.\\PHYSICALDRIVE0"').Size / 1GB)
 $TotaalGeheugen = Write-Output ([math]::Round((Get-CimInstance -Class CIM_PhysicalMemory -ErrorAction Stop | Measure-Object Capacity -Sum).Sum / 1GB)) "GB"
-$DimmType1 = (Get-CimInstance -Class CIM_PhysicalMemory).SMBIOSMemoryType | Select-Object -First 1
-$DimmType2 = (Get-CimInstance -Class CIM_PhysicalMemory).SMBIOSMemoryType | Select-Object -Skip 1
+$GeheugenMHZ = Write-Output "@"(Get-CimInstance -Class CIM_PhysicalMemory -ErrorAction Stop | Measure-Object Speed -Minimum).Minimum "MHZ"
 $BitLockerID = (Get-BitLockerVolume -MountPoint C).KeyProtector | Where-Object RecoveryPassword | Select-Object -ExpandProperty KeyProtectorId
 $BitLockerSleutel = (Get-BitLockerVolume -MountPoint C).KeyProtector | Where-Object RecoveryPassword | Select-Object -ExpandProperty RecoveryPassword
-#
-#Output niks na $TotaalGeheugen in $Specs als er 2 verschillende ramtype's in 1 systeem zitten
-if ($DimmType1 -eq $DimmType2) {
-    $GeheugenMHZ = Write-Output "@"(Get-CimInstance -Class CIM_PhysicalMemory -ErrorAction Stop | Measure-Object Speed -Minimum).Minimum "MHZ"
-}
-elseif (-not $DimmType2) {
-    $GeheugenMHZ = Write-Output "@"(Get-CimInstance -Class CIM_PhysicalMemory -ErrorAction Stop | Measure-Object Speed -Minimum).Minimum "MHZ"
-}
-else {
-    $GeheugenMHZ = $null
-}
 #
 #Output bitlocker id, bitlocker key, PC model, CPU, serienummer, RAM info en drive info naar een csv bestand
 $Specs = [PSCustomObject]@{
