@@ -247,8 +247,12 @@ if($SMBiosMemoryType -in 26,94,165){
     $SMBiosMemoryType = $Null
 }
 #
-#Slaat specs en bitlocker op als variabele
+if((Get-CimInstance Win32_ComputerSystem).Manufacturer -eq "HP" -or (Get-CimInstance Win32_ComputerSystem).Manufacturer -eq "Hewlett Packard"){
 $Model = (Get-CimInstance Win32_ComputerSystem).Model
+} else{
+    $Model = (Get-CimInstance Win32_ComputerSystem).SystemFamily
+}
+#Slaat specs en bitlocker op als variabele
 $CPU = (Get-CimInstance Win32_Processor -Property Name).Name
 $SerieNummer = (Get-CimInstance Win32_BIOS).SerialNumber
 $SchijfNaam = (Get-CimInstance Win32_DiskDrive | Where-Object -Property DeviceID -Contains \\.\PHYSICALDRIVE0).Caption
