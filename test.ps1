@@ -4,7 +4,7 @@ param ([string]$ScriptDrive)
 #Requires -RunAsAdministrator
 
 #Verandert usb schijf letter naar H:
-Set-Partition -DriveLetter $ScriptDrive -NewDriveLetter H
+Get-Partition -DriveLetter $ScriptDrive | Set-Partition -NewDriveLetter H
 #
 
 ## Windows Update Script
