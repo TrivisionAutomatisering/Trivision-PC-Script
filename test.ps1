@@ -324,7 +324,7 @@ try {
     Start-Process "H:\Temp\Foxit.exe" -ArgumentList "/VERYSILENT /NORESTART" -Wait
 }
 catch {
-    Start-Process 'H:\Temp\Ninite.exe' -ArgumentList '/allusers /select "Foxit Reader" /nocache' -Wait
+    Start-Process 'H:\Temp\Ninite.exe' -ArgumentList '/allusers /silent . /select "Foxit Reader" /nocache' -Wait
 }
 } else{
     Write-Host herinner mitchell eraan ninite pro te vernieuwen
@@ -337,6 +337,11 @@ catch {
 #Voert ScriptBlock $WindowsUpdate uit
 & $WindowsUpdate
 #
+
+#$taskName = "WindowsUpdateOnStartup"
+#$taskAction = New-ScheduledTaskAction -Execute 'Powershell.exe' -Argument '-ExecutionPolicy Bypass -Command {(Install-Module PSWindowsUpdate), (Get-WindowsUpdate -Install -AcceptAll)}'
+#$taskTrigger = New-ScheduledTaskTrigger -Once -AtStartup 
+#Register-ScheduledTask -TaskName $taskName -Action $taskAction -Trigger $taskTrigger
 
 #Verwijdert alle ps1, xml en exe bestanden en herstart de computer 
 Remove-Item "H:\Temp" -Recurse
