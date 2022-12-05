@@ -272,7 +272,7 @@ $Specs = [PSCustomObject]@{
     "ID:"              = "$BitlockerID" -replace('[{}]')
     "Herstel Sleutel:" = "$BitLockerSleutel"
 }
-$specs | Export-Csv H:\PcInfo$NewName.csv -NoTypeInformation
+$Specs | Export-Csv H:\PcInfo$NewName.csv -NoTypeInformation
 #
 ##
 
