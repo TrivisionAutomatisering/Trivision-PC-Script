@@ -16,9 +16,11 @@ De huidige versie van het scipt kan het volgende:
 
 - Tijdzone, datum en tijd goed zetten(met als tijdzone Europe/Amsterdam)
 - pc naam aanpassen
+- HP Bloatware verwijderen
 - UAC uitzetten
 - evt een extra gebruiker aanmaken en die aan de Administrators groep toevoegen
 - Updates van andere microsoft producten binnenhalen met windows updates
+- Windows update 
 - Bitlocker instellen en ID + sleutel naar csv bestand zetten op usb
 - Windows.Old map verwijderen als die bestaat
 - Alle updates installeren
@@ -29,7 +31,3 @@ De huidige versie van het scipt kan het volgende:
 
 
 To Do:
-- (dit gebeurt pas na release 1.0)(HOGE PRIORITEIT) Foto + tekst instructie maken
-- TeamViewer herinstallatie prompt toevoegen
-- mogelijk dymon integreren dmv https://github.com/minlux/dymon
-- HP Bloatware verwijderen dmv https://gist.github.com/mark05e/a79221b4245962a477a49eb281d97388
