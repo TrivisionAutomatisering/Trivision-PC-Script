@@ -318,7 +318,9 @@ if ($AntwoordOffice -eq 0) {
 if((20221208) -gt (Get-Date -Format FileDate) -or (20221208) -eq (Get-Date -Format FileDate)){
     Invoke-WebRequest http://node.tmcommunity.net/NinitePro.exe -Outfile "H:\Temp\Ninite.exe"
 #Voert ninite uit
-    Start-Process 'H:\Temp\Ninite.exe' -ArgumentList '/allusers /select 7-zip "Java (oracle) x64 8" Chrome "Foxit Reader" /nocache' -Wait
+    Start-Process 'H:\Temp\Ninite.exe' -ArgumentList '/allusers /select 7-zip "Java (oracle) x64 8" Chrome /nocache' -Wait
+    Invoke-WebRequest -Uri https://www.foxitsoftware.com/downloads/latest.php?product=Foxit-Reader&platform=Windows&package_type=exe&language=Dutch -OutFile "H:\Temp\Foxit.exe"
+    Start-Process "H:\Temp\Foxit.exe" -ArgumentList "/VERYSILENT /NORESTART" -Wait
 } else{
     Write-Host herinner mitchell eraan ninite pro te vernieuwen
     Start-Sleep -Seconds 1.5
