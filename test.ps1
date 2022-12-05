@@ -114,7 +114,7 @@ if ($AntwoordTeamViewer2 -eq 0) {
     Taskkill /F /IM TeamViewer.exe
     Start-Process "C:\Program Files (x86)\TeamViewer\uninstall.exe" /S 
     Invoke-WebRequest https://trivision.nl/downloads/TeamViewer_Host_Setup.exe -OutFile "C:\TeamViewer.exe"
-    & "C:\TeamViewer.exe"
+    Start-Process "C:\TeamViewer.exe" -Wait
 }
 }
 if($AntwoordTeamviewer -eq 1){
