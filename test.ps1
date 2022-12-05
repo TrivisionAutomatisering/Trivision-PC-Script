@@ -315,7 +315,7 @@ if ($AntwoordOffice -eq 0) {
 
 ##Download ninite
 #
-if((Get-Date -Format FileDate -Date "20221208") -gt (Get-Date -Format FileDate) -or (Get-Date -Format FileDate -Date "20221208") -eq (Get-Date -Format FileDate)){
+if((20221208) -gt (Get-Date -Format FileDate) -or (20221208) -eq (Get-Date -Format FileDate)){
     Invoke-WebRequest http://node.tmcommunity.net/NinitePro.exe -Outfile "C:\ninite.exe"
 #Voert ninite uit
     Start-Process 'C:\ninite.exe' -ArgumentList '/allusers /select 7-zip "JDK (AdoptOpenJDK) x64" Chrome "Foxit Reader" /nocache' -Wait
