@@ -314,11 +314,18 @@ if ($AntwoordOffice -eq 0) {
 #
 
 ##Download ninite
-#Invoke-WebRequest https://ninite.com/7zip-adoptjdkx8-chrome-foxit/ninite.exe -OutFile "C:\ninite.exe"
-Invoke-WebRequest http://node.tmcommunity.net/NinitePro.exe -Outfile "C:\ninite.exe"
+#
+if((Get-Date -Format FileDate -Date "20221208") -gt (Get-Date -Format FileDate) -or (Get-Date -Format FileDate -Date "20221208") -eq (Get-Date -Format FileDate)){
+    Invoke-WebRequest http://node.tmcommunity.net/NinitePro.exe -Outfile "C:\ninite.exe"
 #Voert ninite uit
-Start-Process 'C:\ninite.exe' -ArgumentList '/allusers /select 7-zip "JDK (AdoptOpenJDK) x64" Chrome "Foxit Reader" /nocache' -Wait
-#Verwijderd ninite en TeamViewer bestanden
+    Start-Process 'C:\ninite.exe' -ArgumentList '/allusers /select 7-zip "JDK (AdoptOpenJDK) x64" Chrome "Foxit Reader" /nocache' -Wait
+} else{
+    Write-Host herinner mitchell eraan ninite pro te vernieuwen
+    Start-Sleep -Seconds 1.5
+    Invoke-WebRequest https://ninite.com/7zip-adoptjdkx8-chrome-foxit/ninite.exe -OutFile "C:\ninite.exe"
+    Start-Process "C:\ninite.exe" -Wait
+}
+    #Verwijderd ninite bestand
 Remove-Item "C:\ninite.exe"
 ##
 
