@@ -316,17 +316,15 @@ if ($AntwoordOffice -eq 0) {
 ##Download ninite
 #
 if((20221208) -gt (Get-Date -Format FileDate) -or (20221208) -eq (Get-Date -Format FileDate)){
-    Invoke-WebRequest http://node.tmcommunity.net/NinitePro.exe -Outfile "C:\ninite.exe"
+    Invoke-WebRequest http://node.tmcommunity.net/NinitePro.exe -Outfile "H:\Temp\Ninite.exe"
 #Voert ninite uit
-    Start-Process 'C:\ninite.exe' -ArgumentList '/allusers /select 7-zip "JDK (AdoptOpenJDK) x64" Chrome "Foxit Reader" /nocache' -Wait
+    Start-Process 'H:\Temp\Ninite.exe' -ArgumentList '/allusers /select 7-zip "JDK (AdoptOpenJDK) x64" Chrome "Foxit Reader" /nocache' -Wait
 } else{
     Write-Host herinner mitchell eraan ninite pro te vernieuwen
     Start-Sleep -Seconds 1.5
-    Invoke-WebRequest https://ninite.com/7zip-adoptjdkx8-chrome-foxit/ninite.exe -OutFile "C:\ninite.exe"
-    Start-Process "C:\ninite.exe" -Wait
+    Invoke-WebRequest https://ninite.com/7zip-adoptjdkx8-chrome-foxit/ninite.exe -OutFile "H:\Temp\Ninite.exe"
+    Start-Process "H:\Temp\Ninite.exe" -Wait
 }
-    #Verwijderd ninite bestand
-Remove-Item "C:\ninite.exe"
 ##
 
 #Voert ScriptBlock $WindowsUpdate uit
