@@ -338,10 +338,10 @@ catch {
 & $WindowsUpdate
 #
 
-#$taskName = "WindowsUpdateOnStartup"
-#$taskAction = New-ScheduledTaskAction -Execute 'Powershell.exe' -Argument '-ExecutionPolicy Bypass -Command {(Install-Module PSWindowsUpdate), (Get-WindowsUpdate -Install -AcceptAll)}'
-#$taskTrigger = New-ScheduledTaskTrigger -Once -AtStartup 
-#Register-ScheduledTask -TaskName $taskName -Action $taskAction -Trigger $taskTrigger
+$taskName = "WindowsUpdateOnStartup"
+$taskAction = New-ScheduledTaskAction -Execute 'Powershell.exe' -Argument '-ExecutionPolicy Bypass -WindowStyle Hidden -Command ((Get-WindowsUpdate -Install -AcceptAll), (Unregister-ScheduledTask -TaskName "WindowsUpdateOnStartup" -Confirm:$false))'
+$taskTrigger = New-ScheduledTaskTrigger -AtLogOn
+Register-ScheduledTask -TaskName $taskName -Action $taskAction -Trigger $taskTrigger -RunLevel Highest
 
 #Verwijdert alle ps1, xml en exe bestanden en herstart de computer 
 Remove-Item "H:\Temp" -Recurse
