@@ -325,7 +325,7 @@ catch {
     Invoke-WebRequest -Uri "https://ninite.com/7zip-adoptjavax8-chrome-foxit/ninite.exe" -OutFile "H:\Temp\Ninite.exe"
     Start-Process "H:\Temp\Ninite.exe" -Wait
 }
-winget install "Oracle.JavaRuntimeEnvironment" --source "winget" --silent --accept-package-agreements | Out-Null
+    winget install "Oracle.JavaRuntimeEnvironment" --source "winget" --silent --accept-package-agreements | Out-Null
 
 #Voert ScriptBlock $WindowsUpdate uit
 & $WindowsUpdate
