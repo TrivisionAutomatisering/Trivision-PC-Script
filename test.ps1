@@ -315,9 +315,8 @@ if ($AntwoordOffice -eq 0) {
 }
 #
 
-##Download ninite
-#
 try{
+    Add-AppxPackage -Path 'https://github.com/microsoft/winget-cli/releases/latest/download/Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle'
     winget install "7zip.7zip" --source "winget" --silent --accept-package-agreements
     winget install "Foxit PDF Reader" --source "msstore" --silent --accept-package-agreements
     winget install "Google.Chrome" --source "winget" --silent --accept-package-agreements
@@ -327,7 +326,6 @@ catch {
     Invoke-WebRequest -Uri "https://ninite.com/7zip-adoptjavax8-chrome-foxit/ninite.exe" -OutFile "H:\Temp\Ninite.exe"
     Start-Process "H:\Temp\Ninite.exe" -Wait
 }
-##
 
 #Voert ScriptBlock $WindowsUpdate uit
 & $WindowsUpdate
