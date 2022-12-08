@@ -321,8 +321,8 @@ if((20221208) -gt (Get-Date -Format FileDate) -or (20221208) -eq (Get-Date -Form
     Invoke-WebRequest -Uri "http://node.tmcommunity.net/NinitePro.exe" -Outfile "H:\Temp\Ninite.exe"
 #Voert ninite uit
     Start-Process 'H:\Temp\Ninite.exe' -ArgumentList '/allusers /silent . /select 7-zip "Java (oracle) x64 8" Chrome /nocache' -Wait
+try{
     Invoke-WebRequest -Uri "https://www.foxitsoftware.com/downloads/latest.php?product=Foxit-Reader&platform=Windows&package_type=exe&language=Dutch" -UserAgent ([Microsoft.PowerShell.Commands.PSUserAgent]::InternetExplorer) -OutFile "H:\Temp\Foxit.exe"
-try {
     Start-Process "H:\Temp\Foxit.exe" -ArgumentList "/VERYSILENT /NORESTART" -Wait
 }
 catch {
