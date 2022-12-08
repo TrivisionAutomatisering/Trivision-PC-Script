@@ -329,7 +329,7 @@ catch {
 } else{
     Write-Host herinner mitchell eraan ninite pro te vernieuwen
     Start-Sleep -Seconds 1.5
-    Invoke-WebRequest -Uri "https://ninite.com/7zip-adoptjdkx8-chrome-foxit/ninite.exe" -OutFile "H:\Temp\Ninite.exe"
+    Invoke-WebRequest -Uri "https://ninite.com/7zip-adoptjavax8-chrome-foxit/ninite.exe" -OutFile "H:\Temp\Ninite.exe"
     Start-Process "H:\Temp\Ninite.exe" -Wait
 }
 ##
