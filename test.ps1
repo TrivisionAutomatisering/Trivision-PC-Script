@@ -317,19 +317,13 @@ if ($AntwoordOffice -eq 0) {
 
 ##Download ninite
 #
-if((20221208) -gt (Get-Date -Format FileDate) -or (20221208) -eq (Get-Date -Format FileDate)){
-    Invoke-WebRequest -Uri "http://node.tmcommunity.net/NinitePro.exe" -Outfile "H:\Temp\Ninite.exe"
-#Voert ninite uit
-    Start-Process 'H:\Temp\Ninite.exe' -ArgumentList '/allusers /silent . /select 7-zip "Java (oracle) x64 8" Chrome /nocache' -Wait
 try{
+    winget install "7zip.7zip" --source "winget" --silent --accept-package-agreements
     winget install "Foxit PDF Reader" --source "msstore" --silent --accept-package-agreements
+    winget install "Google.Chrome" --source "winget" --silent --accept-package-agreements
+    winget install "Oracle.JavaRuntimeEnvironment" --source "winget" --silent --accept-package-agreements
 }
 catch {
-    Start-Process 'H:\Temp\Ninite.exe' -ArgumentList '/allusers /silent . /select "Foxit Reader" /nocache' -Wait
-}
-} else{
-    Write-Host herinner mitchell eraan ninite pro te vernieuwen
-    Start-Sleep -Seconds 1.5
     Invoke-WebRequest -Uri "https://ninite.com/7zip-adoptjavax8-chrome-foxit/ninite.exe" -OutFile "H:\Temp\Ninite.exe"
     Start-Process "H:\Temp\Ninite.exe" -Wait
 }
