@@ -316,10 +316,10 @@ if ($AntwoordOffice -eq 0) {
 ##Download ninite
 #
 if((20221208) -gt (Get-Date -Format FileDate) -or (20221208) -eq (Get-Date -Format FileDate)){
-    Invoke-WebRequest http://node.tmcommunity.net/NinitePro.exe -Outfile "H:\Temp\Ninite.exe"
+    Invoke-WebRequest "http://node.tmcommunity.net/NinitePro.exe" -Outfile "H:\Temp\Ninite.exe"
 #Voert ninite uit
     Start-Process 'H:\Temp\Ninite.exe' -ArgumentList '/allusers /silent . /select 7-zip "Java (oracle) x64 8" Chrome /nocache' -Wait
-    Invoke-WebRequest -Uri https://www.foxitsoftware.com/downloads/latest.php?product=Foxit-Reader&platform=Windows&package_type=exe&language=Dutch -OutFile "H:\Temp\Foxit.exe"
+    Invoke-WebRequest -Uri "https://www.foxitsoftware.com/downloads/latest.php?product=Foxit-Reader&platform=Windows&package_type=exe&language=Dutch" -OutFile "H:\Temp\Foxit.exe"
 try {
     Start-Process "H:\Temp\Foxit.exe" -ArgumentList "/VERYSILENT /NORESTART" -Wait
 }
