@@ -13,7 +13,8 @@ Get-Partition -DriveLetter $ScriptDrive | Set-Partition -NewDriveLetter H
 #Windows Update ScriptBlock
 $WindowsUpdate = {
 # Installeert provider om windows update module te kunnen installeren
-Install-PackageProvider -Name NuGet -MinimumVersion 2.8.5.201 -Force | Out-Null
+try{
+    Install-PackageProvider -Name NuGet -MinimumVersion 2.8.5.201 -Force | Out-Null
 #Zet repository voor de windows update module als vertrouwd
 Set-PSRepository PSGallery -InstallationPolicy Trusted
 #Installeert module voor windows updates in powershell
@@ -22,12 +23,14 @@ Import-Module PSWindowsUpdate
 #Download en installeert alle windows updates 2 keer
 Get-WindowsUpdate -AcceptAll -Install -IgnoreReboot
 Get-WindowsUpdate -AcceptAll -Install -IgnoreReboot -ignoreRebootRequired
+}catch{
 $KopWindowsUpdate = 'Windows Update'
-$VraagWindowsUpdate = 'Was er een fout tijdens het updaten?'
+$VraagWindowsUpdate = 'Er was een fout tijdens het updaten, wil je het opnieuw proberen?'
 $KeuzesWindowsUpdate = '&Ja', '&Nee'
 $AntwoordWindowsUpdate = $Host.UI.PromptForChoice($KopWindowsUpdate, $VraagWindowsUpdate, $KeuzesWindowsUpdate, 1)
 if($AntwoordWindowsUpdate -eq 0){
     & $WindowsUpdate
+}
 }
 }
 ##
