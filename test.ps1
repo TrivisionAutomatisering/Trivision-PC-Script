@@ -14,7 +14,7 @@ Get-Partition -DriveLetter $ScriptDrive | Set-Partition -NewDriveLetter H
 $WindowsUpdate = {
 # Installeert provider om windows update module te kunnen installeren
 try{
-    Install-PackageProvider -Name NuGet -MinimumVersion 2.8.5.201 -Force | Out-Null
+Install-PackageProvider -Name NuGet -MinimumVersion 2.8.5.201 -Force | Out-Null
 #Zet repository voor de windows update module als vertrouwd
 Set-PSRepository PSGallery -InstallationPolicy Trusted
 #Installeert module voor windows updates in powershell
@@ -320,10 +320,10 @@ if ($AntwoordOffice -eq 0) {
 
 try{
     Add-AppxPackage -Path 'https://github.com/microsoft/winget-cli/releases/latest/download/Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle'
-    winget install "7zip.7zip" --source "winget" --silent --accept-package-agreements
-    winget install "Foxit PDF Reader" --source "msstore" --silent --accept-package-agreements
-    winget install "Google.Chrome" --source "winget" --silent --accept-package-agreements
-    winget install "Oracle.JavaRuntimeEnvironment" --source "winget" --silent --accept-package-agreements
+    winget install "7zip.7zip" --source "winget" --silent --accept-package-agreements --accept-source-agreements
+    winget install "Foxit PDF Reader" --source "msstore" --silent --accept-package-agreements --accept-source-agreements
+    winget install "Google.Chrome" --source "winget" --silent --accept-package-agreements --accept-source-agreements
+    winget install "Oracle.JavaRuntimeEnvironment" --source "winget" --silent --accept-package-agreements --accept-source-agreements
 }
 catch {
     Invoke-WebRequest -Uri "https://ninite.com/7zip-adoptjavax8-chrome-foxit/ninite.exe" -OutFile "H:\Temp\Ninite.exe"
