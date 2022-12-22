@@ -318,8 +318,6 @@ if ($AntwoordOffice -eq 0) {
 }
 #
 
-#Installeert dependency voor winget vanaf https://store.rg-adguard.net/ met link: https://apps.microsoft.com/store/detail/appinstallatieprogramma/9NBLGGH4NNS1
-Add-AppxPackage -Path 'http://tlu.dl.delivery.mp.microsoft.com/filestreamingservice/files/cadae296-3389-40c2-b927-605f7b399b78?P1=1671720836&P2=404&P3=2&P4=KCQRkZZ2zEZ7iaZ7YcXZIYTub9agNbzDQ3sxjYeSIOQ0hbwFzoLQ77S%2bWatcaExoW%2b6oeGE%2bzypvvggi8L%2fGLg%3d%3d'
 #installeert winget, 7zip, foxit, chrome en java
 try{
     Add-AppxPackage -Path 'https://github.com/microsoft/winget-cli/releases/latest/download/Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle'
