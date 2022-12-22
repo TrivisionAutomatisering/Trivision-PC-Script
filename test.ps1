@@ -9,6 +9,10 @@ Set-ExecutionPolicy Unrestricted
 Get-Partition -DriveLetter $ScriptDrive | Set-Partition -NewDriveLetter H
 #
 
+if((Test-Path H:\Temp) -eq $False){
+    New-Item H:\Temp -ItemType "directory"
+}
+
 ## Windows Update Script
 #Windows Update ScriptBlock
 $WindowsUpdate = {
