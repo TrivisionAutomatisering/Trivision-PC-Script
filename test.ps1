@@ -38,20 +38,10 @@ if($AntwoordWindowsUpdate -eq 0){
 ##Office Script
 #Office ScriptBlock installeert office met dezelfde taal als de OS
 $Office365 = {
-    try{
     Invoke-WebRequest https://github.com/MitchellTrivision/Trivision-PC-Script/releases/latest/download/Office365.zip -OutFile H:\Temp\Office365.zip
     Expand-Archive H:\Temp\Office365.zip -DestinationPath H:\Temp -Force
     Start-Process "H:\Temp\setup.exe" -ArgumentList "/configure "H:\Temp\Office nl-NL x64.xml""
-    } catch{
-$KopOfficeInstallatie = 'Office 365 installatie fout'
-$VraagOfficeInstallatie = 'Er was een fout tijdens het installeren van office 365, wil je het opnieuw proberen?'
-$KeuzesOfficeInstallatie = '&Ja', '&Nee'
-$AntwoordOfficeInstallatie = $Host.UI.PromptForChoice($KopOfficeInstallatie, $VraagOfficeInstallatie, $KeuzesOfficeInstallatie, 1)
-if($AntwoordOfficeInstallatie -eq 0){
-    & $Office365
-}
     }
-}
 #Vraagt of office geinstalleerd moet worden
 $KopOffice = 'Office 365'
 $VraagOffice = 'Wil je Office 365 installeren?'
