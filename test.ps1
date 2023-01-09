@@ -322,6 +322,10 @@ if ($AntwoordOffice -eq 0) {
 }
 #
 
+#Voert ScriptBlock $WindowsUpdate uit
+& $WindowsUpdate
+#
+
 #installeert winget, 7zip, foxit, chrome en java
 Install-Module -Name WingetTools
 Install-WinGet
@@ -336,10 +340,6 @@ catch {
     Invoke-WebRequest -Uri "https://ninite.com/7zip-adoptjavax8-chrome-foxit/ninite.exe" -OutFile "H:\Temp\Ninite.exe"
     Start-Process "H:\Temp\Ninite.exe" -Wait
 }
-
-#Voert ScriptBlock $WindowsUpdate uit
-& $WindowsUpdate
-#
 
 $taskName = "WindowsUpdateOnStartup"
 $taskAction = New-ScheduledTaskAction -Execute 'Powershell.exe' -Argument '-ExecutionPolicy Bypass -WindowStyle Hidden -Command ((Get-WindowsUpdate -Install -AcceptAll), (Unregister-ScheduledTask -TaskName "WindowsUpdateOnStartup" -Confirm:$false))'
