@@ -14,6 +14,8 @@ if((Test-Path H:\Temp) -eq $False){
 }
 
 ## Windows Update Script
+# Failure counter voor Windows Update
+$UpdateFailCounter = 0
 #Windows Update ScriptBlock
 $WindowsUpdate = {
 # Installeert provider om windows update module te kunnen installeren
@@ -28,11 +30,17 @@ Import-Module PSWindowsUpdate
 Get-WindowsUpdate -AcceptAll -Install -IgnoreReboot
 Get-WindowsUpdate -AcceptAll -Install -IgnoreReboot -ignoreRebootRequired
 }catch{
+$UpdateFailCounter = $UpdateFailCounter + 1
+if($UpdateFailCounter -gt 3){
 $KopWindowsUpdate = 'Windows Update'
 $VraagWindowsUpdate = 'Er was een fout tijdens het updaten, wil je het opnieuw proberen?'
 $KeuzesWindowsUpdate = '&Ja', '&Nee'
 $AntwoordWindowsUpdate = $Host.UI.PromptForChoice($KopWindowsUpdate, $VraagWindowsUpdate, $KeuzesWindowsUpdate, 1)
 if($AntwoordWindowsUpdate -eq 0){
+    & $WindowsUpdate
+}
+} else{
+    Write-Warning -Message "Er was een fout Het word nu opnieuw geprobeerd(dit is geen loop)"
     & $WindowsUpdate
 }
 }
