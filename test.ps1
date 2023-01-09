@@ -3,7 +3,7 @@ param ([string]$ScriptDrive)
 #
 #Requires -RunAsAdministrator
 
-Set-ExecutionPolicy Unrestricted
+Set-ExecutionPolicy Unrestricted -Scope Session
 
 #Verandert usb schijf letter naar H:
 Get-Partition -DriveLetter $ScriptDrive | Set-Partition -NewDriveLetter H
