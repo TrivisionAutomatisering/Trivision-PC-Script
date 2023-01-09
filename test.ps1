@@ -33,7 +33,7 @@ Get-WindowsUpdate -AcceptAll -Install -IgnoreReboot -ignoreRebootRequired
 $UpdateFailCounter = $UpdateFailCounter + 1
 if($UpdateFailCounter -gt 3){
 $KopWindowsUpdate = 'Windows Update'
-$VraagWindowsUpdate = 'Er was een fout tijdens het updaten, wil je het opnieuw proberen?'
+$VraagWindowsUpdate = 'Er was al 3 keer een fout tijdens het updaten, wil je het opnieuw proberen?'
 $KeuzesWindowsUpdate = '&Ja', '&Nee'
 $AntwoordWindowsUpdate = $Host.UI.PromptForChoice($KopWindowsUpdate, $VraagWindowsUpdate, $KeuzesWindowsUpdate, 1)
 if($AntwoordWindowsUpdate -eq 0){
