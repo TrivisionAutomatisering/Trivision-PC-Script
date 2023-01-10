@@ -24,8 +24,11 @@ Install-PackageProvider -Name NuGet -MinimumVersion 2.8.5.201 -Force
 #Zet repository voor de windows update module als vertrouwd
 Set-PSRepository PSGallery -InstallationPolicy Trusted
 #Installeert module voor windows updates in powershell
-Install-Module PSWindowsUpdate
-Import-Module PSWindowsUpdate
+if((Test-Path C:\Program Files\WindowsPowerShell\Modules) -eq $False){
+mkdir C:\Program Files\WindowsPowerShell\Modules
+}
+Save-Module -Name PSWindowsUpdate -Path C:\Program Files\WindowsPowerShell\Modules
+Import-Module C:\Program Files\WindowsPowerShell\Modules\PSWindowsUpdate
 #Download en installeert alle windows updates 2 keer
 Get-WindowsUpdate -AcceptAll -Install -IgnoreReboot
 Get-WindowsUpdate -AcceptAll -Install -IgnoreReboot -ignoreRebootRequired
@@ -92,7 +95,7 @@ if ($AntwoordGebruiker -eq 0) {
 #
 
 #Schakelt BitLocker in op de C schijf als dit niet ingeschakeld is
-if ((Test-Path H:\geenbitlocker*.txt) -eq $False) {
+if ((H:\geenbitlocker*.txt) -eq $False) {
     if (((Get-BitLockerVolume | Where-Object -Property MountPoint -Contains C:).ProtectionStatus) -eq 'Off') {
         Enable-BitLocker -MountPoint "C:" -RecoveryPasswordProtector
         manage-bde -protectors -enable
