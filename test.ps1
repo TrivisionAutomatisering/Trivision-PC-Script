@@ -50,7 +50,7 @@ if($AntwoordWindowsUpdate -eq 0){
 ##Office Script
 #Office ScriptBlock installeert office met dezelfde taal als de OS
 $Office365 = {
-    Invoke-WebRequest https://github.com/TrivisionAutomatisering/Trivision-PC-Script/releases/latest/download/Office365.zip -OutFile H:\Temp\Office365.zip
+    Invoke-WebRequest -Uri https://github.com/TrivisionAutomatisering/Trivision-PC-Script/releases/latest/download/Office365.zip -OutFile H:\Temp\Office365.zip
     Expand-Archive H:\Temp\Office365.zip -DestinationPath H:\Temp -Force
     Start-Process "H:\Temp\setup.exe" -ArgumentList '/configure "H:\Temp\Office nl-NL x64.xml"'
     }
@@ -348,6 +348,8 @@ catch {
     Invoke-WebRequest -Uri "https://ninite.com/7zip-adoptjavax8-chrome-foxit/ninite.exe" -OutFile "H:\Temp\Ninite.exe"
     Start-Process "H:\Temp\Ninite.exe" -Wait
 }
+
+Invoke-WebRequest -Uri "https://github.com/TrivisionAutomatisering/Trivision-PC-Script/releases/latest/download/Start.script.als.admin.bat" -OutFile "H:\Start.script.als.admin.bat"
 
 $taskName = "WindowsUpdateOnStartup"
 $taskAction = New-ScheduledTaskAction -Execute 'Powershell.exe' -Argument '-ExecutionPolicy Bypass -WindowStyle Hidden -Command ((Get-WindowsUpdate -Install -AcceptAll), (Unregister-ScheduledTask -TaskName "WindowsUpdateOnStartup" -Confirm:$false))'
