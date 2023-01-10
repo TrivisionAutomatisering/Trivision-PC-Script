@@ -24,11 +24,11 @@ Install-PackageProvider -Name NuGet -MinimumVersion 2.8.5.201 -Force
 #Zet repository voor de windows update module als vertrouwd
 Set-PSRepository PSGallery -InstallationPolicy Trusted
 #Installeert module voor windows updates in powershell
-if((Test-Path C:\Program Files\WindowsPowerShell\Modules) -eq $False){
-mkdir C:\Program Files\WindowsPowerShell\Modules
+if((Test-Path "C:\Program Files\WindowsPowerShell\Modules") -eq $False){
+mkdir "C:\Program Files\WindowsPowerShell\Modules"
 }
-Save-Module -Name PSWindowsUpdate -Path C:\Program Files\WindowsPowerShell\Modules
-Import-Module C:\Program Files\WindowsPowerShell\Modules\PSWindowsUpdate
+Save-Module -Name PSWindowsUpdate -Path "C:\Program Files\WindowsPowerShell\Modules"
+Import-Module "C:\Program Files\WindowsPowerShell\Modules\PSWindowsUpdate"
 #Download en installeert alle windows updates 2 keer
 Get-WindowsUpdate -AcceptAll -Install -IgnoreReboot
 Get-WindowsUpdate -AcceptAll -Install -IgnoreReboot -ignoreRebootRequired
@@ -339,7 +339,8 @@ if ($AntwoordOffice -eq 0) {
 #
 
 #installeert winget, 7zip, foxit, chrome en java
-Install-Module -Name WingetTools
+Save-Module -Name WingetTools -Path "C:\Program Files\WindowsPowerShell\Modules"
+Import-Module "C:\Program Files\WindowsPowerShell\Modules\WingetTools"
 Install-WinGet
 try{
     winget install "7zip.7zip" --source "winget" --silent --accept-package-agreements --accept-source-agreements
