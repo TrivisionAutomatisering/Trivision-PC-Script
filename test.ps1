@@ -95,6 +95,7 @@ if ($AntwoordGebruiker -eq 0) {
 if ((Test-Path H:\geenbitlocker*.txt) -eq $False) {
     if (((Get-BitLockerVolume | Where-Object -Property MountPoint -Contains C:).ProtectionStatus) -eq 'Off') {
         Enable-BitLocker -MountPoint "C:" -RecoveryPasswordProtector
+        manage-bde -protectors -enable
     } else{
         Write-Host Bitlocker was al ingesteld
     }
