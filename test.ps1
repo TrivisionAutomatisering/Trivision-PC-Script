@@ -27,8 +27,14 @@ Set-PSRepository PSGallery -InstallationPolicy Trusted
 if((Test-Path "C:\Program Files\WindowsPowerShell\Modules") -eq $False){
 mkdir "C:\Program Files\WindowsPowerShell\Modules"
 }
+try{
+Install-Module PSWindowsUpdate
+Import-Module PSWindowsUpdate
+}
+catch{
 Save-Module -Name PSWindowsUpdate -Path "C:\Program Files\WindowsPowerShell\Modules"
 Import-Module "C:\Program Files\WindowsPowerShell\Modules\PSWindowsUpdate"
+}
 #Download en installeert alle windows updates 2 keer
 Get-WindowsUpdate -AcceptAll -Install -IgnoreReboot
 Get-WindowsUpdate -AcceptAll -Install -IgnoreReboot -ignoreRebootRequired
@@ -95,7 +101,7 @@ if ($AntwoordGebruiker -eq 0) {
 #
 
 #Schakelt BitLocker in op de C schijf als dit niet ingeschakeld is
-if ((H:\geenbitlocker*.txt) -eq $False) {
+if ((Test-Path H:\geenbitlocker*.txt) -eq $False) {
     if (((Get-BitLockerVolume | Where-Object -Property MountPoint -Contains C:).ProtectionStatus) -eq 'Off') {
         Enable-BitLocker -MountPoint "C:" -RecoveryPasswordProtector
         manage-bde -protectors -enable
@@ -339,8 +345,14 @@ if ($AntwoordOffice -eq 0) {
 #
 
 #installeert winget, 7zip, foxit, chrome en java
+try{
+Install-Module WingetTools
+Import-Module WingetTools
+}
+catch {
 Save-Module -Name WingetTools -Path "C:\Program Files\WindowsPowerShell\Modules"
 Import-Module "C:\Program Files\WindowsPowerShell\Modules\WingetTools"
+}
 Install-WinGet
 try{
     winget install "7zip.7zip" --source "winget" --silent --accept-package-agreements --accept-source-agreements
