@@ -3,6 +3,8 @@ param ([string]$ScriptDrive)
 #
 #Requires -RunAsAdministrator
 
+[Net.ServicePointManager]::SecurityProtocol = "tls12"
+
 #Verandert usb schijf letter naar H:
 Get-Partition -DriveLetter $ScriptDrive | Set-Partition -NewDriveLetter H
 #
