@@ -1,19 +1,22 @@
 #Sites voor powershell hulp:
-#ChatGPT: chat.openai.com
+#ChatGPT(neem info met een korrel zout): chat.openai.com
 #Microsoft: https://learn.microsoft.com/en-us/powershell/scripting/overview?view=powershell-5.1
 #Discord PowerShell groep: https://discord.com/invite/powershell
+#En natuurlijk: google.com
 
 #Neemt variabele over vanuit het cmd start script
 param ([string]$ScriptDrive)
 #
 #Requires -RunAsAdministrator
 
+#Fix voor het falen van Install-Module commando's
 [Net.ServicePointManager]::SecurityProtocol = "tls12"
 
 #Verandert usb schijf letter naar H:
 Get-Partition -DriveLetter $ScriptDrive | Set-Partition -NewDriveLetter H
 #
 
+#Checkt of de folder H:\Temp bestaat, zo niet dan word deze aangemaakt
 if((Test-Path H:\Temp) -eq $False){
     New-Item -path H:\ -Name "Temp" -ItemType "directory"
 }
@@ -21,39 +24,47 @@ if((Test-Path H:\Temp) -eq $False){
 ## Windows Update Script
 # Failure counter voor Windows Update
 $UpdateFailCounter = 0
-#Windows Update ScriptBlock
+#Windows Update ScriptBlock LET OP: Dit is een stuk script wat later pas opgeroepen wordt.
 $WindowsUpdate = {
-# Installeert provider om windows update module te kunnen installeren
+# Indien de update faalt word het opnieuw geprobeerd. Elke keer dat het opnieuw geprobeerd word gaat $UpdateFailCounter met 1 omhoog, vanaf dat $UpdateFailCounter op 3 staat word er elke poging gevragen of je het nog een keer wilt proberen.  
 try{
+#Installeert paketprovider NuGet om de module voor PSWindowsUpdate en WinGetTools(komt aan het einde van het script) te kunnen installeren 
 Install-PackageProvider -Name NuGet -MinimumVersion 2.8.5.201 -Force | Out-Null
-#Zet repository voor de windows update module als vertrouwd
+#Zet repository voor PSWindowsUpdate en WinGetTools als vertrouwd
 Set-PSRepository PSGallery -InstallationPolicy Trusted
-#Installeert module voor windows updates in powershell
+#Maakt de folder waar modules geinstalleerd horen te worden aangezien hier voorheen problemen mee geweest zijn
 if((Test-Path "C:\Program Files\WindowsPowerShell\Modules") -eq $False){
 mkdir "C:\Program Files\WindowsPowerShell\Modules"
 }
+#Indien de PSWindowsUpdate module niet geinstalleerd kan worden word het op een andere manier geprobeerd
 try{
+#Installeert module voor windows updates in powershell
 Install-Module PSWindowsUpdate
 Import-Module PSWindowsUpdate
 }
 catch{
+#Installeert module voor windows updates in powershell op de manier hoe de commando's in het try blok HOREN te werken.
 Save-Module -Name PSWindowsUpdate -Path "C:\Program Files\WindowsPowerShell\Modules"
 Import-Module "C:\Program Files\WindowsPowerShell\Modules\PSWindowsUpdate"
 }
-#Download en installeert alle windows updates 2 keer
+#Download en installeert alle windows updates 2 keer maar bij de 2e keer worden updates die een reboot nodig hebben overgeslagen omdat deze anders dubbel gedownload worden
 Get-WindowsUpdate -AcceptAll -Install -IgnoreReboot
 Get-WindowsUpdate -AcceptAll -Install -IgnoreReboot -ignoreRebootRequired
 }catch{
 $UpdateFailCounter = $UpdateFailCounter + 1
 if($UpdateFailCounter -gt 3){
+#Geeft keuze of je nog een keer windows update wilt proberen.
 $KopWindowsUpdate = 'Windows Update'
 $VraagWindowsUpdate = 'Er was al 3 keer een fout tijdens het updaten, wil je het opnieuw proberen?'
 $KeuzesWindowsUpdate = '&Ja', '&Nee'
 $AntwoordWindowsUpdate = $Host.UI.PromptForChoice($KopWindowsUpdate, $VraagWindowsUpdate, $KeuzesWindowsUpdate, 1)
+#Als het antwoord ja is, dan word het scriptblok $WindowsUpdate gedraait. 
 if($AntwoordWindowsUpdate -eq 0){
     & $WindowsUpdate
 }
-} else{
+} 
+#Als $UpdateFailCounter 3 of lager is word het scriptblock $WindowsUpdate uitgevoerd 
+else{
     Write-Warning -Message "Er was een fout Het word nu opnieuw geprobeerd(dit is geen loop)"
     & $WindowsUpdate
 }
@@ -62,10 +73,13 @@ if($AntwoordWindowsUpdate -eq 0){
 ##
 
 ##Office Script
-#Office ScriptBlock installeert office met dezelfde taal als de OS
+#Office ScriptBlock installeert office met dezelfde taal als de OS LET OP: dit is een stuk script wat later pas opgeroepen word net zoals $WindowsUpdate
 $Office365 = {
+    #Download Office365.zip van de laatste github release
     Invoke-WebRequest -Uri https://github.com/TrivisionAutomatisering/Trivision-PC-Script/releases/latest/download/Office365.zip -OutFile H:\Temp\Office365.zip
+    #Pakt de zip uit in H:\Temp
     Expand-Archive H:\Temp\Office365.zip -DestinationPath H:\Temp -Force
+    #Start office installatie
     Start-Process "H:\Temp\setup.exe" -ArgumentList '/configure "H:\Temp\Office nl-NL x64.xml"'
     }
 #Vraagt of office geinstalleerd moet worden
@@ -76,7 +90,7 @@ $AntwoordOffice = $Host.UI.PromptForChoice($KopOffice, $VraagOffice, $KeuzesOffi
 ##
 
 ##Extra Gebruiker Script
-# ScriptBlock dat vraagt naar gegevens voor de gebruiker, de gebruiker aanmaakt, toevoegt aan admin en dan vraagt of er nog een gebruiker toegevoegd moet worden.
+#ScriptBlock dat vraagt naar gegevens voor de gebruiker, de gebruiker aanmaakt, toevoegt aan admin en dan vraagt of er nog een gebruiker toegevoegd moet worden.
 $KopGebruiker = 'Extra Gebruiker'
 $VraagGebruiker = 'Wil je een extra gebruiker toevoegen?'
 $KeuzesGebruiker = '&Ja', '&Nee'
@@ -99,14 +113,15 @@ $ExtraGebruiker = {
 ##
 
 
-#Voert ScriptBlock $ExtraGebruiker uit als er ja geantwoord is op de vraag boven het ScriptBlock
+#Voert scriptblok $ExtraGebruiker uit als er ja geantwoord is op de vraag boven het ScriptBlock
 if ($AntwoordGebruiker -eq 0) {
     & $ExtraGebruiker
 }
 #
 
-#Schakelt BitLocker in op de C schijf als dit niet ingeschakeld is
+
 if ((Test-Path H:\geenbitlocker*.txt) -eq $False) {
+    #Schakelt BitLocker in op de C schijf als dit niet ingeschakeld is
     if (((Get-BitLockerVolume | Where-Object -Property MountPoint -Contains C:).ProtectionStatus) -eq 'Off') {
         Enable-BitLocker -MountPoint "C:" -RecoveryPasswordProtector
         manage-bde -protectors -enable
