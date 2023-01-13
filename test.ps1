@@ -123,9 +123,9 @@ $KeuzesTeamViewer = '&Nee', '&Host', '&QS'
 $AntwoordTeamviewer = $Host.UI.PromptForChoice($KopTeamViewer, $VraagTeamViewer, $KeuzesTeamViewer, 1)
 if($AntwoordTeamviewer -eq 1){
 #Download TeamViewer Host
-Invoke-WebRequest https://trivision.nl/downloads/TeamViewer_Host_Setup.exe -OutFile "C:\TeamViewer.exe"
+Invoke-WebRequest https://trivision.nl/downloads/TeamViewer_Host_Setup.exe -OutFile "H:\Temp\TeamViewer.exe"
 #Voert TeamViewer uit
-    Start-Process "C:\TeamViewer.exe" -Wait
+    Start-Process "H:\Temp\TeamViewer.exe" -Wait
 } elseif($AntwoordTeamviewer -eq 2){
     New-Item -Path "C:/Trivision Support" -ItemType Directory
     Invoke-WebRequest https://trivision.nl/downloads/TeamViewerQS.exe -OutFile "C:/Trivision Support/TeamViewerQS.exe"
