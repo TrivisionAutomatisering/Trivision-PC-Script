@@ -1,3 +1,8 @@
+#Sites voor powershell hulp:
+#ChatGPT: chat.openai.com
+#Microsoft: https://learn.microsoft.com/en-us/powershell/scripting/overview?view=powershell-5.1
+#Discord PowerShell groep: https://discord.com/invite/powershell
+
 #Neemt variabele over vanuit het cmd start script
 param ([string]$ScriptDrive)
 #
