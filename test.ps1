@@ -357,10 +357,8 @@ if ($AntwoordOffice -eq 0) {
 #
 
 #installeert winget, 7zip, foxit, chrome en java
-Save-Module -Name WingetTools -Path "C:\Program Files\WindowsPowerShell\Modules"
-Import-Module "C:\Program Files\WindowsPowerShell\Modules\WingetTools"
-Install-WinGet
 try{
+    Add-AppxPackage -Path 'https://github.com/microsoft/winget-cli/releases/latest/download/Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle'
     winget install "7zip.7zip" --source "winget" --silent --accept-package-agreements --accept-source-agreements
     winget install "Foxit PDF Reader" --source "msstore" --silent --accept-package-agreements --accept-source-agreements
     winget install "Google.Chrome" --source "winget" --silent --accept-package-agreements --accept-source-agreements
