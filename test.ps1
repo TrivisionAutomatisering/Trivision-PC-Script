@@ -389,7 +389,7 @@ catch {
 Invoke-WebRequest -Uri "https://github.com/TrivisionAutomatisering/Trivision-PC-Script/releases/latest/download/Start.script.als.admin.bat" -OutFile "H:\Start.script.als.admin.bat"
 
 $taskName = "WindowsUpdateOnStartup"
-$taskAction = New-ScheduledTaskAction -Execute 'Powershell.exe' -Argument '-ExecutionPolicy Bypass -Command ((Get-WindowsUpdate -Install -AcceptAll), (Unregister-ScheduledTask -TaskName "WindowsUpdateOnStartup" -Confirm:$false))'
+$taskAction = New-ScheduledTaskAction -Execute 'Powershell.exe' -Argument '-ExecutionPolicy Bypass -Command ((Get-WindowsUpdate -Install -AcceptAll -IgnoreReboot), (Unregister-ScheduledTask -TaskName "WindowsUpdateOnStartup" -Confirm:$false))'
 $taskTrigger = New-ScheduledTaskTrigger -AtLogOn
 Register-ScheduledTask -TaskName $taskName -Action $taskAction -Trigger $taskTrigger -RunLevel Highest
 
