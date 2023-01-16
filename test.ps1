@@ -36,17 +36,9 @@ Set-PSRepository PSGallery -InstallationPolicy Trusted
 if((Test-Path "C:\Program Files\WindowsPowerShell\Modules") -eq $False){
 mkdir "C:\Program Files\WindowsPowerShell\Modules"
 }
-#Indien de PSWindowsUpdate module niet geinstalleerd kan worden word het op een andere manier geprobeerd
-try{
-#Installeert module voor windows updates in powershell
-Install-Module PSWindowsUpdate
-Import-Module PSWindowsUpdate
-}
-catch{
-#Installeert module voor windows updates in powershell op de manier hoe de commando's in het try blok HOREN te werken.
+#Installeert module voor windows updates in powershell.
 Save-Module -Name PSWindowsUpdate -Path "C:\Program Files\WindowsPowerShell\Modules"
 Import-Module "C:\Program Files\WindowsPowerShell\Modules\PSWindowsUpdate"
-}
 #Download en installeert alle windows updates 2 keer maar bij de 2e keer worden updates die een reboot nodig hebben overgeslagen omdat deze anders dubbel gedownload worden
 Get-WindowsUpdate -AcceptAll -Install -IgnoreReboot
 Get-WindowsUpdate -AcceptAll -Install -IgnoreReboot -ignoreRebootRequired
@@ -365,14 +357,8 @@ if ($AntwoordOffice -eq 0) {
 #
 
 #installeert winget, 7zip, foxit, chrome en java
-try{
-Install-Module WingetTools
-Import-Module WingetTools
-}
-catch {
 Save-Module -Name WingetTools -Path "C:\Program Files\WindowsPowerShell\Modules"
 Import-Module "C:\Program Files\WindowsPowerShell\Modules\WingetTools"
-}
 Install-WinGet
 try{
     winget install "7zip.7zip" --source "winget" --silent --accept-package-agreements --accept-source-agreements
