@@ -362,7 +362,7 @@ try{
     start-process 'winget' -NoNewWindow -ArgumentList @('install "7zip.7zip" --source "winget" --silent --accept-package-agreements --accept-source-agreements') -Wait
     start-process 'winget' -NoNewWindow -ArgumentList @('install "Foxit PDF Reader" --source "msstore" --silent --accept-package-agreements --accept-source-agreements') -Wait
     start-process 'winget' -NoNewWindow -ArgumentList @('install "Google.Chrome" --source "winget" --silent --accept-package-agreements --accept-source-agreements') -Wait
-    start-process 'winget' -NoNewWindow -ArgumentList @('winget install "Oracle.JavaRuntimeEnvironment" --source "winget" --silent --accept-package-agreements --accept-source-agreements') -Wait
+    start-process 'winget' -NoNewWindow -ArgumentList @('install "Oracle.JavaRuntimeEnvironment" --source "winget" --silent --accept-package-agreements --accept-source-agreements') -Wait
 }
 #installeert via ninite als winget faalt
 catch {
