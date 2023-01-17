@@ -359,11 +359,11 @@ if ($AntwoordOffice -eq 0) {
 
 #installeert winget, 7zip, foxit, chrome en java
 Add-AppxPackage -Path 'https://github.com/microsoft/winget-cli/releases/latest/download/Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle'
+start-process 'winget' -NoNewWindow -ArgumentList @('install "7zip.7zip" --source "winget" --silent --accept-package-agreements --accept-source-agreements') -Wait
+start-process 'winget' -NoNewWindow -ArgumentList @('install "Foxit PDF Reader" --source "msstore" --silent --accept-package-agreements --accept-source-agreements') -Wait
+start-process 'winget' -NoNewWindow -ArgumentList @('install "Google.Chrome" --source "winget" --silent --accept-package-agreements --accept-source-agreements') -Wait
+start-process 'winget' -NoNewWindow -ArgumentList @('install "Oracle.JavaRuntimeEnvironment" --source "winget" --silent --accept-package-agreements --accept-source-agreements') -Wait
 #try{
-    start-process 'winget' -NoNewWindow -ArgumentList @('install "7zip.7zip" --source "winget" --silent --accept-package-agreements --accept-source-agreements') -Wait
-    start-process 'winget' -NoNewWindow -ArgumentList @('install "Foxit PDF Reader" --source "msstore" --silent --accept-package-agreements --accept-source-agreements') -Wait
-    start-process 'winget' -NoNewWindow -ArgumentList @('install "Google.Chrome" --source "winget" --silent --accept-package-agreements --accept-source-agreements') -Wait
-    start-process 'winget' -NoNewWindow -ArgumentList @('install "Oracle.JavaRuntimeEnvironment" --source "winget" --silent --accept-package-agreements --accept-source-agreements') -Wait
 #}
 #installeert via ninite als winget faalt
 #catch {
