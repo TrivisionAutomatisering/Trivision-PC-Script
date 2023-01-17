@@ -141,6 +141,7 @@ Invoke-WebRequest https://trivision.nl/downloads/TeamViewer_Host_Setup.exe -OutF
 } elseif($AntwoordTeamviewer -eq 2){
     New-Item -Path "C:/Trivision Support" -ItemType Directory
     Invoke-WebRequest https://trivision.nl/downloads/TeamViewerQS.exe -OutFile "C:/Trivision Support/TeamViewerQS.exe"
+    Invoke-Item "C:/Trivision Support"
 }
 
 #Herinstalleert teamviewer als de installatie gefaald is
