@@ -359,10 +359,10 @@ if ($AntwoordOffice -eq 0) {
 
 #installeert chocolatey, 7zip, foxit, chrome en java
 Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
-choco install 7zip
-choco install foxitreader
-choco install googlechrome
-choco install javaruntime
+Start-Process -NoNewWindow -Wait -FilePath "choco" -ArgumentList "install 7zip --yes"
+Start-Process -NoNewWindow -Wait -FilePath "choco" -ArgumentList "install foxitreader --yes"
+Start-Process -NoNewWindow -Wait -FilePath "choco" -ArgumentList "install googlechrome --yes"
+Start-Process -NoNewWindow -Wait -FilePath "choco" -ArgumentList "install javaruntime --yes"
 #Install-Module WingetTools
 #winget install "7zip.7zip" --source "winget" --silent --accept-package-agreements --accept-source-agreements
 #winget install "Foxit PDF Reader" --source "msstore" --silent --accept-package-agreements --accept-source-agreements
