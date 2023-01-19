@@ -155,13 +155,17 @@ $VraagTeamViewer2 = 'Is TeamViewer Correct Geinstalleerd?'
 $KeuzesTeamViewer2 = '&Nee', '&Ja'
 $AntwoordTeamViewer2 = $Host.UI.PromptForChoice($KopTeamViewer2, $VraagTeamViewer2, $KeuzesTeamViewer2, 1)
 if ($AntwoordTeamViewer2 -eq 0) {
+    #Sluit Teamviewer
     Taskkill /F /IM TeamViewer.exe
-    Start-Process "C:\Program Files (x86)\TeamViewer\uninstall.exe" /S 
-    Invoke-WebRequest https://trivision.nl/downloads/TeamViewer_Host_Setup.exe -OutFile "C:\TeamViewer.exe"
-    Start-Process "C:\TeamViewer.exe" -Wait
+    #Start teamviewer uninstaller
+    Start-Process "C:\Program Files (x86)\TeamViewer\uninstall.exe" /S
+    #Download TeamViewer host opnieuw 
+    Invoke-WebRequest https://trivision.nl/downloads/TeamViewer_Host_Setup.exe -OutFile "H:\Temp\TeamViewer.exe"
+    Start-Process "H:\Temp\TeamViewer.exe" -Wait
 }
 }
 if($AntwoordTeamviewer -eq 1){
+    #Start ScriptBlock $TeamViewerHostHerinstallatie
     & $TeamViewerHostHerinstallatie
 }
 ##
@@ -289,7 +293,7 @@ if($SMBiosMemoryType -in 26,94,165){
 } else{
     $SMBiosMemoryType = $Null
 }
-#
+#Bepaalt op welke manier het model opgehaald word aangezien hp dit anders doet als de rest
 if((Get-CimInstance Win32_ComputerSystem).Manufacturer -eq "HP" -or (Get-CimInstance Win32_ComputerSystem).Manufacturer -eq "Hewlett Packard"){
 $Model = (Get-CimInstance Win32_ComputerSystem).Model
 } else{
@@ -306,6 +310,7 @@ $BitLockerID = (Get-BitLockerVolume -MountPoint C).KeyProtector | Where-Object R
 $BitLockerSleutel = (Get-BitLockerVolume -MountPoint C).KeyProtector | Where-Object RecoveryPassword | Select-Object -ExpandProperty RecoveryPassword
 #
 #Output bitlocker id, bitlocker key, PC model, CPU, serienummer, RAM info en drive info naar een csv bestand
+#https://learn.microsoft.com/en-us/powershell/scripting/learn/deep-dives/everything-about-pscustomobject?view=powershell-5.1
 $Specs = [PSCustomObject]@{
     Model              = "$Model"
     SerieNummer        = "$SerieNummer"
@@ -331,13 +336,14 @@ Write-Host "De tijd en datum zijn nu goed gezet."
 tzutil /s "W. Europe Standard Time"
 ##
 
-#Verwijdert Windows.old als het bestaat
+#Checkt of Windows.old bestaat
 if ((Test-Path -Path 'C:\Windows.old' -PathType Container) -eq $true) {
+    #Maakt huidige gebruiker eigenaar van de folder
     TAKEOWN /f C:\Windows.old\*.*
     ICACLS C:\Windows.old\*.* /Grant 'System:(F)'
+    #Verwijdert Windows.old
     Remove-Item C:\Windows.old\*.*
 }
-#
 
 #Zet UAC uit via registry
 Set-ItemProperty -Path REGISTRY::HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\System -Name ConsentPromptBehaviorAdmin -Value 0
@@ -361,33 +367,25 @@ if ($AntwoordOffice -eq 0) {
 & $WindowsUpdate
 #
 
-#installeert chocolatey, 7zip, foxit, chrome en java
+#installeert chocolatey
 Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
+#Installeert 7zip, foxit, chrome en java
 Start-Process -NoNewWindow -Wait -FilePath "choco" -ArgumentList "install 7zip --yes"
 Start-Process -NoNewWindow -Wait -FilePath "choco" -ArgumentList "install foxitreader --yes"
 Start-Process -NoNewWindow -Wait -FilePath "choco" -ArgumentList "install googlechrome --yes"
 Start-Process -NoNewWindow -Wait -FilePath "choco" -ArgumentList "install javaruntime --yes"
-#Install-Module WingetTools
-#winget install "7zip.7zip" --source "winget" --silent --accept-package-agreements --accept-source-agreements
-#winget install "Foxit PDF Reader" --source "msstore" --silent --accept-package-agreements --accept-source-agreements
-#winget install "Google.Chrome" --source "winget" --silent --accept-package-agreements --accept-source-agreements
-#winget install "Oracle.JavaRuntimeEnvironment" --source "winget" --silent --accept-package-agreements --accept-source-agreements
-#try{
-#}
-#installeert via ninite als winget faalt
-#catch {
-#    Invoke-WebRequest -Uri "https://ninite.com/7zip-adoptjavax8-chrome-foxit/ninite.exe" -OutFile "H:\Temp\Ninite.exe"
-#    Start-Process "H:\Temp\Ninite.exe" -Wait
-#}
 
+#Download .bat bestand om script te starten
 Invoke-WebRequest -Uri "https://github.com/TrivisionAutomatisering/Trivision-PC-Script/releases/latest/download/Start.script.als.admin.bat" -OutFile "H:\Start.script.als.admin.bat"
 
+#Maakt taak aan om windows update te draaien bij inloggen en verwijdert taak als hij klaar is met updaten
 $taskName = "WindowsUpdateOnStartup"
 $taskAction = New-ScheduledTaskAction -Execute 'Powershell.exe' -Argument '-ExecutionPolicy Bypass -Command ((Get-WindowsUpdate -Install -AcceptAll -IgnoreReboot), (Unregister-ScheduledTask -TaskName "WindowsUpdateOnStartup" -Confirm:$false))'
 $taskTrigger = New-ScheduledTaskTrigger -AtLogOn
 Register-ScheduledTask -TaskName $taskName -Action $taskAction -Trigger $taskTrigger -RunLevel Highest
 
-#Verwijdert alle ps1, xml en exe bestanden en herstart de computer 
+#Verwijdert Temp folder op usb en het test.ps1 bestand en herstart de computer
+Remove-Item "H:\test.ps1"
 Remove-Item "H:\Temp" -Recurse
 Restart-Computer
 #
