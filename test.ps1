@@ -111,8 +111,8 @@ if ($AntwoordGebruiker -eq 0) {
 }
 #
 
-
-if ((Test-Path H:\geenbitlocker*.txt) -eq $False) {
+#Checkt of er een bestand is genaamd geenbitlocker.txt
+if ((Test-Path H:\geenbitlocker.txt) -eq $False) {
     #Schakelt BitLocker in op de C schijf als dit niet ingeschakeld is
     if (((Get-BitLockerVolume | Where-Object -Property MountPoint -Contains C:).ProtectionStatus) -eq 'Off') {
         Enable-BitLocker -MountPoint "C:" -RecoveryPasswordProtector
@@ -125,6 +125,7 @@ if ((Test-Path H:\geenbitlocker*.txt) -eq $False) {
 
 #Vraagt naar nieuwe pc naam
 $NewName = Read-Host -Prompt "Wat is de naam van de PC?(bijv. WS01 of LT01)"
+#Verandert pc naam naar antwoord op $NewName
 Rename-Computer -NewName "$NewName"
 #
 
@@ -136,11 +137,14 @@ $AntwoordTeamviewer = $Host.UI.PromptForChoice($KopTeamViewer, $VraagTeamViewer,
 if($AntwoordTeamviewer -eq 1){
 #Download TeamViewer Host
 Invoke-WebRequest https://trivision.nl/downloads/TeamViewer_Host_Setup.exe -OutFile "H:\Temp\TeamViewer.exe"
-#Voert TeamViewer uit
+#Voert TeamViewer uit en wacht totdat de setup gesloten is
     Start-Process "H:\Temp\TeamViewer.exe" -Wait
 } elseif($AntwoordTeamviewer -eq 2){
+    #Maakt folder "C:/Trivision Support" aan
     New-Item -Path "C:/Trivision Support" -ItemType Directory
+    #Download Teamviewer QuickSupport
     Invoke-WebRequest https://trivision.nl/downloads/TeamViewerQS.exe -OutFile "C:/Trivision Support/TeamViewerQS.exe"
+    #Opent folder "C:/Trivision Support"
     Invoke-Item "C:/Trivision Support"
 }
 
@@ -385,4 +389,5 @@ Register-ScheduledTask -TaskName $taskName -Action $taskAction -Trigger $taskTri
 
 #Verwijdert alle ps1, xml en exe bestanden en herstart de computer 
 Remove-Item "H:\Temp" -Recurse
+Restart-Computer
 #
