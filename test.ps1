@@ -357,12 +357,17 @@ if ($AntwoordOffice -eq 0) {
 & $WindowsUpdate
 #
 
-#installeert winget, 7zip, foxit, chrome en java
-Add-AppxPackage -Path 'https://github.com/microsoft/winget-cli/releases/latest/download/Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle'
-winget install "7zip.7zip" --source "winget" --silent --accept-package-agreements --accept-source-agreements
-winget install "Foxit PDF Reader" --source "msstore" --silent --accept-package-agreements --accept-source-agreements
-winget install "Google.Chrome" --source "winget" --silent --accept-package-agreements --accept-source-agreements
-winget install "Oracle.JavaRuntimeEnvironment" --source "winget" --silent --accept-package-agreements --accept-source-agreements
+#installeert chocolatey, 7zip, foxit, chrome en java
+Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
+choco install 7zip
+choco install foxitreader
+choco install googlechrome
+choco install javaruntime
+#Install-Module WingetTools
+#winget install "7zip.7zip" --source "winget" --silent --accept-package-agreements --accept-source-agreements
+#winget install "Foxit PDF Reader" --source "msstore" --silent --accept-package-agreements --accept-source-agreements
+#winget install "Google.Chrome" --source "winget" --silent --accept-package-agreements --accept-source-agreements
+#winget install "Oracle.JavaRuntimeEnvironment" --source "winget" --silent --accept-package-agreements --accept-source-agreements
 #try{
 #}
 #installeert via ninite als winget faalt
@@ -380,5 +385,4 @@ Register-ScheduledTask -TaskName $taskName -Action $taskAction -Trigger $taskTri
 
 #Verwijdert alle ps1, xml en exe bestanden en herstart de computer 
 Remove-Item "H:\Temp" -Recurse
-Restart-Computer
 #
