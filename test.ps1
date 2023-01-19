@@ -116,7 +116,8 @@ if ((Test-Path H:\geenbitlocker.txt) -eq $False) {
     #Schakelt BitLocker in op de C schijf als dit niet ingeschakeld is
     if (((Get-BitLockerVolume | Where-Object -Property MountPoint -Contains C:).ProtectionStatus) -eq 'Off') {
         Enable-BitLocker -MountPoint "C:" -RecoveryPasswordProtector
-        manage-bde -protectors -enable
+        manage-bde -protectors -add "C:" -tpm
+        manage-bde -protectors -enable "C:"
     } else{
         Write-Host Bitlocker was al ingesteld
     }
@@ -299,7 +300,7 @@ $Model = (Get-CimInstance Win32_ComputerSystem).Model
 } else{
     $Model = (Get-CimInstance Win32_ComputerSystem).SystemFamily
 }
-#Slaat specs en bitlocker op als variabele
+#Slaat specs en bitlocker gegevens op als variabele
 $CPU = (Get-CimInstance Win32_Processor -Property Name).Name
 $SerieNummer = (Get-CimInstance Win32_BIOS).SerialNumber
 $SchijfNaam = (Get-CimInstance Win32_DiskDrive | Where-Object -Property DeviceID -Contains \\.\PHYSICALDRIVE0).Caption
@@ -318,7 +319,7 @@ $Specs = [PSCustomObject]@{
     SchijfInfo         = "$SchijfGrootte GiB $SchijfNaam"
     RAMInfo            = "$MemoryType $TotaalGeheugen $GeheugenMHZ"
     PCNaam             = "$NewName"
-    "ID:"              = "$BitlockerID" -replace('[{}]')
+    "ID:"              = "$BitlockerID" -replace('[{}]') #het -replace zorgt ervoor dat de brackets bij de id weggehaald worden
     "Herstel Sleutel:" = "$BitLockerSleutel"
 }
 $Specs | Export-Csv H:\PcInfo$NewName.csv -NoTypeInformation
