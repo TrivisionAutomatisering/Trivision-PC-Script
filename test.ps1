@@ -371,10 +371,6 @@ if ($AntwoordOffice -eq 0) {
 }
 #
 
-#Voert ScriptBlock $WindowsUpdate uit
-& $WindowsUpdate
-#
-
 #installeert chocolatey
 Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
 #Installeert 7zip, foxit, chrome en java
@@ -382,6 +378,10 @@ Start-Process -NoNewWindow -Wait -FilePath "choco" -ArgumentList "install 7zip -
 Start-Process -NoNewWindow -Wait -FilePath "choco" -ArgumentList "install foxitreader --yes"
 Start-Process -NoNewWindow -Wait -FilePath "choco" -ArgumentList "install googlechrome --yes"
 Start-Process -NoNewWindow -Wait -FilePath "choco" -ArgumentList "install javaruntime --yes"
+
+#Voert ScriptBlock $WindowsUpdate uit
+& $WindowsUpdate
+#
 
 #Download .bat bestand om script te starten
 Invoke-WebRequest -Uri "https://github.com/TrivisionAutomatisering/Trivision-PC-Script/releases/latest/download/Start.script.als.admin.bat" -OutFile "H:\Start.script.als.admin.bat"
