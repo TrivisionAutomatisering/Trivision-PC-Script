@@ -371,7 +371,7 @@ if ($AntwoordOffice -eq 0) {
 }
 #
 
-#installeert chocolatey
+#installeert chocolatey | https://chocolatey.org/
 Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
 #Installeert 7zip, foxit, chrome en java
 Start-Process -NoNewWindow -Wait -FilePath "choco" -ArgumentList "install 7zip --yes"
