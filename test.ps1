@@ -28,17 +28,18 @@ $UpdateFailCounter = 0
 $WindowsUpdate = {
 # Indien de update faalt word het opnieuw geprobeerd. Elke keer dat het opnieuw geprobeerd word gaat $UpdateFailCounter met 1 omhoog, vanaf dat $UpdateFailCounter op 3 staat word er elke poging gevragen of je het nog een keer wilt proberen.  
 try{
-#Installeert paketprovider NuGet om de module voor PSWindowsUpdate en WinGetTools(komt aan het einde van het script) te kunnen installeren 
-Install-PackageProvider -Name NuGet -MinimumVersion 2.8.5.201 -Force | Out-Null
-#Zet repository voor PSWindowsUpdate en WinGetTools als vertrouwd
-Set-PSRepository PSGallery -InstallationPolicy Trusted
-#Maakt de folder waar modules geinstalleerd horen te worden aangezien hier voorheen problemen mee geweest zijn
-if((Test-Path "C:\Program Files\WindowsPowerShell\Modules") -eq $False){
-mkdir "C:\Program Files\WindowsPowerShell\Modules"
-}
-#Installeert module voor windows updates in powershell.
-Save-Module -Name PSWindowsUpdate -Path "C:\Program Files\WindowsPowerShell\Modules"
-Import-Module "C:\Program Files\WindowsPowerShell\Modules\PSWindowsUpdate"
+##Installeert paketprovider NuGet om de module voor PSWindowsUpdate en WinGetTools(komt aan het einde van het script) te kunnen installeren 
+##Install-PackageProvider -Name NuGet -MinimumVersion 2.8.5.201 -Force | Out-Null
+##Zet repository voor PSWindowsUpdate als vertrouwd
+##Set-PSRepository PSGallery -InstallationPolicy Trusted
+##Maakt de folder waar modules geinstalleerd horen te worden aangezien hier voorheen problemen mee geweest zijn
+##if((Test-Path "C:\Program Files\WindowsPowerShell\Modules") -eq $False){
+##mkdir "C:\Program Files\WindowsPowerShell\Modules"
+##}
+##Installeert module voor windows updates in powershell.
+##Save-Module -Name PSWindowsUpdate -Path "C:\Program Files\WindowsPowerShell\Modules"
+##Import-Module "C:\Program Files\WindowsPowerShell\Modules\PSWindowsUpdate"
+Start-Process -NoNewWindow -Wait -FilePath "choco" -ArgumentList "install javaruntime --yes"
 #Download en installeert alle windows updates 2 keer maar bij de 2e keer worden updates die een reboot nodig hebben overgeslagen omdat deze anders dubbel gedownload worden
 Get-WindowsUpdate -AcceptAll -Install -IgnoreReboot
 Get-WindowsUpdate -AcceptAll -Install -IgnoreReboot -ignoreRebootRequired
@@ -301,6 +302,15 @@ if($SMBiosMemoryType -in 26,94,165){
 } else{
     $SMBiosMemoryType = $Null
 }
+
+#installeert chocolatey | https://chocolatey.org/
+Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
+#Installeert 7zip, foxit, chrome en java
+Start-Process -NoNewWindow -Wait -FilePath "choco" -ArgumentList "install 7zip --yes"
+Start-Process -NoNewWindow -Wait -FilePath "choco" -ArgumentList "install foxitreader --yes"
+Start-Process -NoNewWindow -Wait -FilePath "choco" -ArgumentList "install googlechrome --yes"
+Start-Process -NoNewWindow -Wait -FilePath "choco" -ArgumentList "install javaruntime --yes"
+
 #Bepaalt op welke manier het model opgehaald word aangezien hp dit anders doet als de rest
 if((Get-CimInstance Win32_ComputerSystem).Manufacturer -eq "HP" -or (Get-CimInstance Win32_ComputerSystem).Manufacturer -eq "Hewlett Packard"){
 $Model = (Get-CimInstance Win32_ComputerSystem).Model
@@ -370,14 +380,6 @@ if ($AntwoordOffice -eq 0) {
     & $Office365
 }
 #
-
-#installeert chocolatey | https://chocolatey.org/
-Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
-#Installeert 7zip, foxit, chrome en java
-Start-Process -NoNewWindow -Wait -FilePath "choco" -ArgumentList "install 7zip --yes"
-Start-Process -NoNewWindow -Wait -FilePath "choco" -ArgumentList "install foxitreader --yes"
-Start-Process -NoNewWindow -Wait -FilePath "choco" -ArgumentList "install googlechrome --yes"
-Start-Process -NoNewWindow -Wait -FilePath "choco" -ArgumentList "install javaruntime --yes"
 
 #Voert ScriptBlock $WindowsUpdate uit
 & $WindowsUpdate
