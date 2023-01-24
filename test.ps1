@@ -9,8 +9,8 @@ param ([string]$ScriptDrive)
 #
 #Requires -RunAsAdministrator
 
-#Fix voor het falen van Install-Module commando's
-[Net.ServicePointManager]::SecurityProtocol = "tls12"
+##Fix voor het falen van Install-Module commando's
+##[Net.ServicePointManager]::SecurityProtocol = "tls12"
 
 #Verandert usb schijf letter naar H:
 Get-Partition -DriveLetter $ScriptDrive | Set-Partition -NewDriveLetter H
