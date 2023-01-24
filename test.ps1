@@ -39,7 +39,6 @@ try{
 ##Installeert module voor windows updates in powershell.
 ##Save-Module -Name PSWindowsUpdate -Path "C:\Program Files\WindowsPowerShell\Modules"
 ##Import-Module "C:\Program Files\WindowsPowerShell\Modules\PSWindowsUpdate"
-Start-Process -NoNewWindow -Wait -FilePath "choco" -ArgumentList "install javaruntime --yes"
 #Download en installeert alle windows updates 2 keer maar bij de 2e keer worden updates die een reboot nodig hebben overgeslagen omdat deze anders dubbel gedownload worden
 Get-WindowsUpdate -AcceptAll -Install -IgnoreReboot
 Get-WindowsUpdate -AcceptAll -Install -IgnoreReboot -ignoreRebootRequired
@@ -284,6 +283,15 @@ Catch {
 }
 ##
 
+#installeert chocolatey | https://chocolatey.org/
+Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
+#Installeert 7zip, foxit, chrome en java
+Start-Process -NoNewWindow -Wait -FilePath "choco" -ArgumentList "install 7zip --yes"
+Start-Process -NoNewWindow -Wait -FilePath "choco" -ArgumentList "install foxitreader --yes"
+Start-Process -NoNewWindow -Wait -FilePath "choco" -ArgumentList "install googlechrome --yes"
+Start-Process -NoNewWindow -Wait -FilePath "choco" -ArgumentList "install javaruntime --yes"
+Start-Process -NoNewWindow -Wait -FilePath "choco" -ArgumentList "install pswindowsupdate --yes"
+
 ## Specs + BitLocker naar CSV Script
 #Checkt ram type en zet variabele hiervoor
 $SMBiosMemoryType = ((Get-CimInstance -Class CIM_PhysicalMemory).SMBIOSMemoryType | Select-Object -First 1)
@@ -302,14 +310,6 @@ if($SMBiosMemoryType -in 26,94,165){
 } else{
     $SMBiosMemoryType = $Null
 }
-
-#installeert chocolatey | https://chocolatey.org/
-Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
-#Installeert 7zip, foxit, chrome en java
-Start-Process -NoNewWindow -Wait -FilePath "choco" -ArgumentList "install 7zip --yes"
-Start-Process -NoNewWindow -Wait -FilePath "choco" -ArgumentList "install foxitreader --yes"
-Start-Process -NoNewWindow -Wait -FilePath "choco" -ArgumentList "install googlechrome --yes"
-Start-Process -NoNewWindow -Wait -FilePath "choco" -ArgumentList "install javaruntime --yes"
 
 #Bepaalt op welke manier het model opgehaald word aangezien hp dit anders doet als de rest
 if((Get-CimInstance Win32_ComputerSystem).Manufacturer -eq "HP" -or (Get-CimInstance Win32_ComputerSystem).Manufacturer -eq "Hewlett Packard"){
