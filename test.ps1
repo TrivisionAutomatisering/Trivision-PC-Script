@@ -9,9 +9,6 @@ param ([string]$ScriptDrive)
 #
 #Requires -RunAsAdministrator
 
-##Fix voor het falen van Install-Module commando's
-##[Net.ServicePointManager]::SecurityProtocol = "tls12"
-
 #Verandert usb schijf letter naar H:
 Get-Partition -DriveLetter $ScriptDrive | Set-Partition -NewDriveLetter H
 #
@@ -28,17 +25,6 @@ $UpdateFailCounter = 0
 $WindowsUpdate = {
 # Indien de update faalt word het opnieuw geprobeerd. Elke keer dat het opnieuw geprobeerd word gaat $UpdateFailCounter met 1 omhoog, vanaf dat $UpdateFailCounter op 3 staat word er elke poging gevragen of je het nog een keer wilt proberen.  
 try{
-##Installeert paketprovider NuGet om de module voor PSWindowsUpdate en WinGetTools(komt aan het einde van het script) te kunnen installeren 
-##Install-PackageProvider -Name NuGet -MinimumVersion 2.8.5.201 -Force | Out-Null
-##Zet repository voor PSWindowsUpdate als vertrouwd
-##Set-PSRepository PSGallery -InstallationPolicy Trusted
-##Maakt de folder waar modules geinstalleerd horen te worden aangezien hier voorheen problemen mee geweest zijn
-##if((Test-Path "C:\Program Files\WindowsPowerShell\Modules") -eq $False){
-##mkdir "C:\Program Files\WindowsPowerShell\Modules"
-##}
-##Installeert module voor windows updates in powershell.
-##Save-Module -Name PSWindowsUpdate -Path "C:\Program Files\WindowsPowerShell\Modules"
-##Import-Module "C:\Program Files\WindowsPowerShell\Modules\PSWindowsUpdate"
 #Download en installeert alle windows updates 2 keer maar bij de 2e keer worden updates die een reboot nodig hebben overgeslagen omdat deze anders dubbel gedownload worden
 Get-WindowsUpdate -AcceptAll -Install -IgnoreReboot
 Get-WindowsUpdate -AcceptAll -Install -IgnoreReboot -ignoreRebootRequired
@@ -398,4 +384,3 @@ Register-ScheduledTask -TaskName $taskName -Action $taskAction -Trigger $taskTri
 Remove-Item "H:\test.ps1"
 Remove-Item "H:\Temp" -Recurse
 Restart-Computer
-#
