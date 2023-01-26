@@ -149,7 +149,7 @@ Invoke-WebRequest https://trivision.nl/downloads/TeamViewer_Host_Setup.exe -OutF
     Invoke-Item "C:/Trivision Support"
     #Maakt snelkoppeling op bureaublad
     $ComObj = New-Object -ComObject WScript.Shell
-    $ShortCut = $ComObj.CreateShortcut(([Environment]::GetFolderPath("Desktop")) + "\TeamViewerQS.lnk")
+    $ShortCut = $ComObj.CreateShortcut(([Environment]::GetFolderPath('CommonDesktopDirectory'))) + "\TeamViewerQS.lnk")
     $ShortCut.TargetPath = "C:/Trivision Support/TeamViewerQS.exe"
     $ShortCut.Description = "TeamViewer Quick Support - Trivision"
     $ShortCut.WindowStyle = 1
